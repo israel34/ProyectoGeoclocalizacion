@@ -6,7 +6,7 @@ module.exports = function (sequelize, Sequelize) {
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
-        },
+        }, 
         correo: {
             type: Sequelize.STRING(50)
         },
@@ -14,16 +14,16 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.STRING
         },
         external_id: {
-            type: Sequelize.UUID
+            type: Sequelize.UUID,
+            defaultValue: Sequelize.UUIDV4
         },
         estado: {
             type: Sequelize.BOOLEAN,
             defaultValue: true
         }
         
-    }, {freezeTableName: true,
-        createdAt: 'fecha_registro',
-        updatedAt: 'fecha_modificacion'
+    }, {timestamps: false,
+        freezeTableName: true
     });
     
     Cuenta.belongsTo(Persona, {
@@ -33,3 +33,4 @@ module.exports = function (sequelize, Sequelize) {
     
     return Cuenta;
 };
+

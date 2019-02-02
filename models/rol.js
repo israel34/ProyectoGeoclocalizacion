@@ -8,14 +8,12 @@ module.exports = function (sequelize, Sequelize) {
         nombre: {
             type: Sequelize.STRING(20)
         }
-    }, {timestamps: false, 
-        freezeTableName: true});
-    
+    });
     Rol.associate = function (models) {
         models.rol.hasMany(models.persona, {
             foreignKey: 'id_rol'
         });
     }
-    
+
     return Rol;
 };

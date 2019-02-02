@@ -12,42 +12,39 @@ module.exports = function (sequelize, Sequelize) {
         },
         apellido: {
             type: Sequelize.STRING(50)
-        },        
-        cedula: {
-            type: Sequelize.STRING(10),
-            allowNull: false,
-            unique: true
-        },
-        external_id: {
-            type: Sequelize.UUID
-        },
-        direccion: {
-            type: Sequelize.STRING
         },
         telefono: {
             type: Sequelize.STRING(15)
+        },
+        external_id: {
+            type: Sequelize.UUID
         },
         estado: {
             type: Sequelize.BOOLEAN,
             defaultValue: true
         }
-        
+
     }, {freezeTableName: true,
         createdAt: 'fecha_registro',
         updatedAt: 'fecha_modificacion'
     });
-    
+
     Persona.belongsTo(Rol, {
         foreignKey: 'id_rol',
         constraints: false
     });
-    
+
     Persona.associate = function (models) {
         models.persona.hasOne(models.cuenta, {
             foreignKey: 'id_persona'
         });
-        
     }
-    
+
+    Persona.associate = function (models) {
+        models.persona.hasMany(models.puntuacion, {
+            foreignKey: 'id_persona'
+        });
+    }
+
     return Persona;
 };
