@@ -1,6 +1,6 @@
 module.exports = function (sequelize, Sequelize) {
     var categoria = require('../models/categoria');
-    var Categoria = new persona(sequelize, Sequelize);
+    var Categoria = new categoria(sequelize, Sequelize);
     var Dependencia = sequelize.define('dependencia', {
         id: {
             autoIncrement: true,

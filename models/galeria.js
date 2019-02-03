@@ -1,6 +1,6 @@
 module.exports = function (sequelize, Sequelize) {
     var dependencia = require('../models/dependencia');
-    var Dependencia = new rol(sequelize, Sequelize);
+    var Dependencia = new dependencia(sequelize, Sequelize);
     var Galeria = sequelize.define('galeria', {
         id: {
             autoIncrement: true,
