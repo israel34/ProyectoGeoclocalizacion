@@ -42,16 +42,16 @@
                     <div class="alert alert-danger">{{error}}</div>
                     {{/if}}
 
-                    <form class="login100-form validate-form" action="/iniciar_sesion">
+                    <form class="login100-form validate-form" action="/iniciar" method="POST">
                         <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                             <span class="label-input100">Correo</span>
-                            <input class="input100" type="text" name="username" placeholder="Ingrese su correo">
+                            <input class="input100" type="text" name="correo" placeholder="Ingrese su correo">
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                             <span class="label-input100">Contraseña</span>
-                            <input class="input100" type="password" name="pass" placeholder="Ingrese su contraseña">
+                            <input class="input100" type="password" name="clave" placeholder="Ingrese su contraseña">
                             <span class="focus-input100"></span>
                         </div>
 

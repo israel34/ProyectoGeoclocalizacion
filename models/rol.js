@@ -13,7 +13,7 @@ module.exports = function (sequelize, Sequelize) {
         models.rol.hasMany(models.persona, {
             foreignKey: 'id_rol'
         });
-    }
+    };
 
     return Rol;
 };

@@ -38,9 +38,6 @@ module.exports = function (sequelize, Sequelize) {
         models.persona.hasOne(models.cuenta, {
             foreignKey: 'id_persona'
         });
-    }
-
-    Persona.associate = function (models) {
         models.persona.hasMany(models.puntuacion, {
             foreignKey: 'id_persona'
         });

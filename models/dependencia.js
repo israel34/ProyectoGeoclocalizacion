@@ -34,6 +34,9 @@ module.exports = function (sequelize, Sequelize) {
         models.dependencia.hasMany(models.puntuacion, {
             foreignKey: 'id_dependencia'
         });
+        models.dependencia.hasMany(models.galeria, {
+            foreignKey: 'id_dependencia'
+        });
     }   
    
     Dependencia.belongsTo(Categoria, {
@@ -41,11 +44,6 @@ module.exports = function (sequelize, Sequelize) {
         constraints: false
     });
     
-    Dependencia.associate = function (models) {
-        models.dependencia.hasMany(models.galeria, {
-            foreignKey: 'id_dependencia'
-        });
-    } 
     
     return Dependencia;
 };

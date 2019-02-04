@@ -1,86 +1,98 @@
-//load bcrypt
 var bCrypt = require('bcrypt-nodejs');
 const uuidv4 = require('uuid/v4');
-
-module.exports = function (passport, Cuenta, Persona, Rol) {
+module.exports = function (passport, cuenta, persona, rol) {
+    var Cuenta = cuenta;//modelo
+    var Persona = persona;//modelo
+    var Rol = rol;
     var LocalStrategy = require('passport-local').Strategy;
-    //serialize
-    passport.serializeUser(function (user, done) {
-        done(null, user.idCuenta);
+    
+    passport.serializeUser(function (cuenta, done) {
+        done(null, cuenta.id);
     });
-    // deserialize user 
-    passport.deserializeUser(function (idCuenta, done) {
-        Cuenta.findById(idCuenta).then(function (cuenta) {
-            if (cuenta) {
-                done(null, cuenta.get());
+    // used to deserialize the user
+    passport.deserializeUser(function (id, done) {
+        Cuenta.findOne({where: {id: id}, include: [{model: Persona, include: {model: Rol}}]}).then(function (cuenta) {
+            if (cuenta) {                
+                var userinfo = {
+                    id: cuenta.id,
+                    id_cuenta: cuenta.external_id,
+                    id_persona: cuenta.persona.external_id,
+                    nombre: cuenta.persona.apellido + " " + cuenta.persona.nombre,
+                    rol: cuenta.persona.rol.nombre
+                };
+                console.log(userinfo);
+                done(null, userinfo);
             } else {
                 done(cuenta.errors, null);
             }
         });
+
     });
     //registro de usuarios por passport
     passport.use('local-signup', new LocalStrategy(
             {
-                usernameField: 'correo',
-                passwordField: 'clave',
+                usernameField: 'correo', //lo que esta como name en el input del registro
+                passwordField: 'clave', //lo que esta como name en el input del registro
                 passReqToCallback: true // allows us to pass back the entire request to the callback
             },
-            function (req, correo, clave, done) {
+            function (req, email, password, done) {
                 var generateHash = function (password) {
                     return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
                 };
                 //verificar si el email no esta registrado
                 Cuenta.findOne({
                     where: {
-                        cedula: correo
+                        correo: email
                     }
                 }).then(function (cuenta) {
                     if (cuenta)
                     {
+
                         return done(null, false, {
                             message: req.flash('correo_repetido', 'El correo ya esta regisrado')
                         });
 
                     } else
                     {
-                        var userPassword = generateHash(clave);
+                        var userPassword = generateHash(password);
                         Rol.findOne({
                             where: {nombre: 'usuario'}
                         }).then(function (rol) {
                             if (rol) {
-                                var dataCuenta =
+                                var dataPersona =
                                         {
-                                            cedula: req.body.cedula,
-                                            clave: userPassword
+                                            apellido: req.body.apellido,
+                                            nombre: req.body.nombre,
+                                            correo: email,
+                                            telefono: req.body.telefono,
+                                            external_id: uuidv4(),
+                                            id_rol: rol.id
                                         };
-                                Cuenta.create(dataCuenta).then(function (newCuenta, created) {
-                                    if (!newCuenta) {
+                                Persona.create(dataPersona).then(function (newPersona, created) {
+                                    console.log("Persona creada " + newPersona);
+                                    if (!newPersona) {
 
                                         return done(null, false);
                                     }
-                                    if (newCuenta) {
-                                        console.log("Se ha creado la cuenta: " + newCuenta.idCuenta);
-                                        var dataPersona = {
-                                            nombre: req.body.nombre,
-                                            apellido: req.body.apellido,
-                                            email: req.body.correo,
-                                            telefono: req.body.telefono,
-                                            idRol: rol.idRol,
-                                            idCuenta: newCuenta.idCuenta
+                                    if (newPersona) {
+                                        console.log("Se ha creado la persona: " + newPersona.id);
+                                        var dataCuenta = {
+                                            correo: email,
+                                            clave: userPassword,
+                                            id_persona: newPersona.id,
+                                            external_id: uuidv4()
                                         };
-                                        Persona.create(dataPersona).then(function (newPersona, created) {
-                                            if (newPersona) {
-                                                console.log("Se ha creado la persona: " + newPersona.idPersona);
-                                                return done(null, newPersona);
+                                        Cuenta.create(dataCuenta).then(function (newCuenta, created) {
+                                            if (newCuenta) {
+                                                console.log("Se ha creado la cuenta: " + newCuenta.id);
+                                                return done(null, newCuenta);
                                             }
-                                            if (!newPersona) {
-                                                console.log("Persona no se pudo crear");
-                                                //borrar persona
+                                            if (!newCuenta) {
+                                                console.log("cuenta no se pudo crear");
                                                 return done(null, false);
                                             }
 
                                         });
-
                                     }
                                 });
                             } else {
@@ -94,21 +106,19 @@ module.exports = function (passport, Cuenta, Persona, Rol) {
                 });
             }
     ));
-
-
-//inicio de sesion
+    //inicio de sesion
     passport.use('local-signin', new LocalStrategy(
             {
-                // by default, local strategy uses username and password, we will override with email
                 usernameField: 'correo',
                 passwordField: 'clave',
                 passReqToCallback: true // allows us to pass back the entire request to the callback
             },
-            function (req, cedula, password, done) {
+            function (req, email, password, done) {
+                var Cuenta = cuenta;
                 var isValidPassword = function (userpass, password) {
                     return bCrypt.compareSync(password, userpass);
                 }
-                Cuenta.findOne({where: {cedula: cedula}}).then(function (cuenta) {
+                Cuenta.findOne({where: {correo: email}}).then(function (cuenta) {
                     if (!cuenta) {
                         return done(null, false, {message: req.flash('err_cred', 'Cuenta no existe')});
                     }
@@ -118,8 +128,7 @@ module.exports = function (passport, Cuenta, Persona, Rol) {
                     }
 
                     var userinfo = cuenta.get();
-                    console.log("Este es el id = "+userinfo.idCuenta);
-                    req.session.id=userinfo.idCuenta;
+                    //console.log(userinfo);
                     return done(null, userinfo);
 
                 }).catch(function (err) {
@@ -128,7 +137,4 @@ module.exports = function (passport, Cuenta, Persona, Rol) {
                 });
             }
     ));
-
 }
-
-

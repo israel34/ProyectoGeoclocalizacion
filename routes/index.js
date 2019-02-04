@@ -12,15 +12,46 @@ router.get('/iniciar_sesion', function(req, res, next) {
 router.get('/registrar', function(req, res, next) {
   res.render('registrar', { title: 'Registrate'});
 });
-router.post('/guardar',
-        passport.authenticate('local-signup', {successRedirect: '/inicio_sesion',
-            failureRedirect: '/registrar', failureFlash: true}
-        ));
-router.post('/iniciar',
+router.get('/administracion', function(req, res, next) {
+  res.render('administracion', { title: 'Inicia Sesion'});
+});
+/*router.post('/registrar', function(req, res, next){
+        passport.authenticate('local-signup', {
+                successRedirect: '/administracion',
+                failureRedirect: '/administracion', 
+                failureFlash: true
+            }
+        )(req, res, next);
+    });*/
+
+
+router.post('/registrar', function(req, res, next) {
+    passport.authenticate('local-signup', function(err, user, info) {
+        console.log("authenticate");
+        console.log(err);
+        console.log(user);
+        console.log(info);
+        res.redirect('/iniciar_sesion');
+    })(req, res, next);
+    });
+
+
+/*router.post('/iniciar',
         passport.authenticate('local-signin',
                 {successRedirect: '/administracion',
-                    failureRedirect: '/inicio_sesion',
+                    failureRedirect: '/iniciar_sesion',
                     failureFlash: true}
-        ));
+        ));*/
+
+router.post('/iniciar', function(req, res, next) {
+    console.log("Login  prueba");
+    passport.authenticate('local-signin', function(err, user, info) {
+        console.log("authenticate login");
+        console.log(err);
+        console.log(user);
+        console.log(info);
+        res.redirect('/administracion');
+    })(req, res, next);
+    });
 
 module.exports = router;

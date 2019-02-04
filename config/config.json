@@ -1,14 +1,14 @@
 {
     "development":{
         "username": "root",
-        "password": "root",
+        "password": "toor",
         "database": "geolocalizacion",
         "host": "localhost",
         "dialect": "mysql"
     },
     "staging":{
         "username": "root",
-        "password": "root",
+        "password": "",
         "database": "geolocalizacion",
         "host": "localhost",
         "dialect": "mysql"

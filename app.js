@@ -31,7 +31,8 @@ models.sequelize.sync().then(() => {
 }).catch(err => {
     console.log(err, "Hubo un error");
 });
-
+//load passport strategies
+require('./config/pasaporte/passport.js')(passport, models.cuenta, models.persona, models.rol);
 
 
 app.use(session({
@@ -52,8 +53,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(indexRouter);
+app.use(usersRouter);
 
 //models
 
@@ -74,3 +75,4 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
