@@ -12,10 +12,6 @@ module.exports = function (sequelize, Sequelize) {
         },
         external_id: {
             type: Sequelize.UUID
-        },
-        estado: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: true
         }
 
     },{timestamps: false,

@@ -1,7 +1,7 @@
 {
     "development":{
         "username": "root",
-        "password": "toor",
+        "password": "root",
         "database": "geolocalizacion",
         "host": "localhost",
         "dialect": "mysql"

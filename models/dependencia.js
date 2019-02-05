@@ -19,12 +19,12 @@ module.exports = function (sequelize, Sequelize) {
         horarioAtencion: {
             type: Sequelize.STRING
         },
-        external_id: {
-            type: Sequelize.UUID
-        },
         estado: {
             type: Sequelize.BOOLEAN,
             defaultValue: true
+        },
+        external_id: {
+            type: Sequelize.UUID
         }
         
     },{timestamps: false,
