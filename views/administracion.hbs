@@ -2,8 +2,7 @@
 <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="">
+        <meta charset="UTF-8"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -22,8 +21,8 @@
         <!-- Jquery-2.2.4 js -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <!-- Popper js -->
-             
-    
+
+
         <script src="jquery_validation.js"></script>
 
     </head>
@@ -39,79 +38,79 @@
             </div>
         </div>
         <script src=""></script>
-<script>
-    var t = jQuery.noConflict();
+        <script>
+var t = jQuery.noConflict();
+
+t().ready(function () {
     
-    t().ready(function () {
-        
-        // validate signup form on keyup and submit
-        t("#dependencia").validate({
-            rules: {
-                nombred: {
-                    required: true,
-                    minlength: 3                    
-                }, 
-                descripcion: {
-                    required: true,
-                    minlength: 3     
-                },
-                categoria: {required: true},
-                telefono: {required: true},
-                
-                horario: {
-                    required: true
-                                    
-                }
+    // validate signup form on keyup and submit
+    t("#dependencia").validate({
+        rules: {
+            nombred: {
+                required: true,
+                minlength: 3
             },
-            messages:  {
-                nombred: {
-                    required: "Ingrese el nombre por favor"
-                                  
-                }, 
-                descripcion: {
-                    required: "Escribe una descripcion"
-                   
-                },
-                categoria: {
-                    required: "Selecciona una dependencia"
-                },
-                telefono: {
-                    required: "Ingresa un telefono"
-                },
-                
-                horario: {
-                    required: "Escribe el horario de atencion"
-                                    
-                }
-            }
-        }); 
-        
-        // validate signup form on keyup and submit
-        t("#categoria").validate({
-            rules: {
-                nombre: {
-                    required: true,
-                    minlength: 3
-                }
+            descripcion: {
+                required: true,
+                minlength: 3
             },
-            messages: {
-                nombre: {
-                    required: "Ingrese el nombre por favor",
-                    minlength: "Minimo 2 caracteres"
-                }
+            categoria: {required: true},
+            
+            telefono: {required: true},
+            
+            horario: {
+                required: true
+                        
             }
-        });
+        },
+        messages: {
+            nombred: {
+                required: "Ingrese el nombre por favor"
+                        
+            },
+            descripcion: {
+                required: "Escribe una descripcion"
+                        
+            },
+            categoria: {required: "Selecciona la categoria"},
+            
+            telefono: {
+                required: "Ingresa un telefono"
+            },
+            
+            horario: {
+                required: "Escribe el horario de atencion"
+                        
+            }
+        }
     });
- 
     
-   
-</script>
+    // validate signup form on keyup and submit
+    t("#categoria").validate({
+        rules: {
+            nombre: {
+                required: true,
+                minlength: 3
+            }
+        },
+        messages: {
+            nombre: {
+                required: "Ingrese el nombre por favor",
+                minlength: "Minimo 2 caracteres"
+            }
+        }
+    });
+});
+
+
+
+        </script>
 
 
 
 
         <!-- ***** Header Area Start ***** -->
-        <header class="header_area" id="header" style="background: #040505">
+        <header class="header_area" id="header" style="background: #ffffff">
             <div class="container h-100">
                 <div class="row h-100">
                     <div class="col-12 h-100">
@@ -141,7 +140,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="/iniciar_sesion">Cerrar sesion</a>
                                     </li>
-                                   
+
 
                                 </ul>
                                 <!-- Search Btn -->
@@ -195,10 +194,23 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Nro</th><th>Nombre</th>
+                                <th>Nro</th><th>Nombre</th><th>Accion</th>
                             </tr>
                         </thead>
+
                         <tbody>
+                            {{#each this.categoria as |item i|}}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ item.nombre }}</td>
+
+                                <td>
+                                    <a href="#{{ item.external_id }}" class="btn btn-error" >Editar</a>                        
+
+                                </td>
+                            </tr>                    
+                            {{/each }}
+                        </tbody>
 
                     </table>
                 </div>
@@ -213,21 +225,29 @@
             </div>
         </section>
         <!-- ****** dependencias ****** -->
+
+
+
         <section class="caviar-reservation-area d-md-flex" id="reservation">
             <div class="reservation-form-area d-flex justify-content-end">
                 <div class="reservation-form">
                     <div class="section-heading">
                         <h2>Agregar dependencia</h2>
                     </div>
-                    <form action="'/guardar/dependencia" method="POST" id="dependencia">
+                    <form action="/guardar/dependencia" method="POST" id="dependencia">
                         <div class="row">
 
                             <div class="col-12 col-lg-12">
-                                <select class="form-control" name="categoria" id="categoria"></select>
-                               
+                                <select class="col-lg-12 btn" style="background: #edeff2" name="categoria" id="categoria">
+                                    {{#each this.categoria as |item|}}
+                                    <option value="{{ item.id }}" > {{item.nombre}}</option>
+                                    {{/each}}
+                                </select>
+
                             </div>
+
                             <div class="col-12 col-lg-12">
-                                <input type="text" class="form-control" placeholder="Nombre" name="nombred">
+                                <input type="text" class="form-control" placeholder="Nombre" name="nombreDependencia">
 
                             </div>
                             <div class="col-12 col-lg-12">
@@ -244,6 +264,7 @@
                             <div class="col-12">
                                 <button type="submit" class="btn caviar-btn"><span></span>Agregar dependencia</button>
                             </div>
+
                         </div>
                     </form>
                 </div>
@@ -256,11 +277,28 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Nro</th><th>Nombre</th><th>Descripcion</th><th>Telefono</th><th>Horario Atencion</th>
+                                <th>Nro</th><th>Nombre</th><th>Descripcion</th><th>Telefono</th><th>Horario Atencion</th><th>Accion</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody>  
+                            {{#each this.listaD as |itenes i|}}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ itenes.nombrec }}</td>
+                                <td>{{ itenes.descripcion }}</td>
+                                <td>{{ itenes.telefono }}</td>
+                                <td>{{ itenes.horario }}</td>
 
+
+
+                                <td>
+                                    <a href="#{{ item.external_id }}" class="btn btn-error" >Editar</a>                        
+
+                                </td>
+                            </tr>                    
+                            {{/each }}
+
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -291,7 +329,7 @@
         </footer>
         <!-- ****** Footer Area End ****** -->
 
-        
+
         <script src="js/bootstrap/popper.min.js"></script>
         <!-- Bootstrap-4 js -->
         <script src="js/bootstrap/bootstrap.min.js"></script>

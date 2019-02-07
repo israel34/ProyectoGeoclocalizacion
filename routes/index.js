@@ -1,61 +1,49 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var categoria = require('../controllers/categoriaController');
+var categoria = require('../controllers/CategoriaController');
 var categoriaController = new categoria;
 var dependencia = require('../controllers/DependenciaController');
 var dependenciaController = new dependencia;
 
+var auth = function middleWare(req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        req.flash('err_cred', 'Inicia sesion!!!');
+        res.redirect('/');
+    }
+};
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('principal', { title: 'Geolocalizacion Loja'});
+router.get('/', function (req, res, next) {
+//insert rol
+require('../controllers/datos/insert_rol');
+    res.render('principal', {title: 'Geolocalizacion Loja'});
 });
-router.get('/iniciar_sesion', function(req, res, next) {
-  res.render('iniciarSesion', { title: 'Inicia Sesion'});
+router.get('/iniciar_sesion', function (req, res, next) {
+    res.render('iniciarSesion', {title: 'Inicia Sesion'});
 });
-router.get('/registrar', function(req, res, next) {
-  res.render('registrar', { title: 'Registrate'});
+router.get('/registrar', function (req, res, next) {
+    res.render('registrar', {title: 'Registrate'});
 });
-router.get('/administracion', function(req, res, next) {
-  res.render('administracion', { title: 'Administrar'});
-});
-/*router.post('/registrar', function(req, res, next){
+router.get('/administracion', categoriaController.verCategoria );
+
+router.post('/registrar',
         passport.authenticate('local-signup', {
-                successRedirect: '/administracion',
-                failureRedirect: '/administracion', 
-                failureFlash: true
-            }
-        )(req, res, next);
-    });*/
+            successRedirect: '/iniciar_sesion',
+            failureRedirect: '/registrar'
+        }
+        ));
+
+router.post('/iniciar',
+        passport.authenticate('local-signin',{
+                successRedirect: "/administracion",
+                    failureRedirect: "/iniciar"}));
+                
+router.post('/guardar/categoria', categoriaController.guardar);
+router.post('/guardar/dependencia', dependenciaController.guardar);
 
 
-router.post('/registrar', function(req, res, next) {
-    passport.authenticate('local-signup', function(err, user, info) {
-        console.log("authenticate");
-        console.log(err);
-        console.log(user);
-        console.log(info);
-        res.redirect('/iniciar_sesion');
-        
-    })(req, res, next);
-    });
-
-
-
-
-router.post('/iniciar', function(req, res, next) {
-    console.log("Login  prueba");
-    passport.authenticate('local-signin', function(err, user, info) {
-        console.log("authenticate login");
-        console.log(err);
-        console.log(user);
-        console.log(info);
-        res.redirect('/administracion' );
-       
-    })(req, res, next);
-    });
- router.post('/guardar/categoria', categoriaController.guardar);
-module.exports = router;
-
- router.post('/guardar/dependencia', dependenciaController.guardar);
+//router.get('/administracion/katty', dependenciaController.verDependencia);
 module.exports = router;

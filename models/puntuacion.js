@@ -24,21 +24,15 @@ module.exports = function (sequelize, Sequelize) {
     });
     
     Puntuacion.belongsTo(Persona, {
-        foreignKey: 'id_persona',
-        constraints: false
+        foreignKey: 'id_persona'
         
     });
     
     Puntuacion.belongsTo(Dependencia, {
-        foreignKey: 'id_dependencia',
-        constraints: false
+        foreignKey: 'id_dependencia'
     });
     
-    Puntuacion.associate = function (models) {
-        models.puntuacion.hasOne(models.dependencia, {
-            foreignKey: 'id_persona'
-        });
-    }
+    
     
     return Puntuacion;
 };

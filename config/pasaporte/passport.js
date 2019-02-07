@@ -11,6 +11,7 @@ module.exports = function (passport, cuenta, persona, rol) {
     });
     // used to deserialize the user
     passport.deserializeUser(function (id, done) {
+       // console.log("salinas "+id);
         Cuenta.findOne({where: {id: id}, include: [{model: Persona, include: {model: Rol}}]}).then(function (cuenta) {
             if (cuenta) {                
                 var userinfo = {
@@ -20,7 +21,7 @@ module.exports = function (passport, cuenta, persona, rol) {
                     nombre: cuenta.persona.apellido + " " + cuenta.persona.nombre,
                     rol: cuenta.persona.rol.nombre
                 };
-                console.log(userinfo);
+               // console.log(userinfo+" .... JOMAIRA");
                 done(null, userinfo);
             } else {
                 done(cuenta.errors, null);
@@ -128,11 +129,12 @@ module.exports = function (passport, cuenta, persona, rol) {
                     }
 
                     var userinfo = cuenta.get();
-                    //console.log(userinfo);
+                    
+                    //console.log("HOLA KATYY......"+userinfo.rol );
                     return done(null, userinfo);
 
                 }).catch(function (err) {
-                    console.log("Error:", err);
+                   // console.log("Error:", err);
                     return done(null, false, {message: req.flash('err_cred', 'Cuenta erronea')});
                 });
             }

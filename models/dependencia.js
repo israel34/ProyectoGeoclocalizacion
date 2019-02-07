@@ -37,12 +37,12 @@ module.exports = function (sequelize, Sequelize) {
         models.dependencia.hasMany(models.galeria, {
             foreignKey: 'id_dependencia'
         });
-    }   
+    };
    
     Dependencia.belongsTo(Categoria, {
-        foreignKey: 'id_categoria',
-        constraints: false
+        foreignKey: 'id_categoria'
     });
+    
     
     
     return Dependencia;

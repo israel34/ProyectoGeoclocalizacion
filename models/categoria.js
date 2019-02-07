@@ -24,7 +24,7 @@ module.exports = function (sequelize, Sequelize) {
         models.categoria.hasMany(models.dependencia, {
             foreignKey: 'id_categoria'
         });
-    }
+    };
 
     return Categoria;
 };

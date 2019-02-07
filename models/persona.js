@@ -30,8 +30,7 @@ module.exports = function (sequelize, Sequelize) {
     });
 
     Persona.belongsTo(Rol, {
-        foreignKey: 'id_rol',
-        constraints: false
+        foreignKey: 'id_rol'
     });
 
     Persona.associate = function (models) {
@@ -41,7 +40,7 @@ module.exports = function (sequelize, Sequelize) {
         models.persona.hasMany(models.puntuacion, {
             foreignKey: 'id_persona'
         });
-    }
+    };
 
     return Persona;
 };

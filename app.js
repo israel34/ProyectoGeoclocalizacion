@@ -24,19 +24,8 @@ app.use(cookieParser());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-//modelos
-var models = require('./models/ind');
-models.sequelize.sync().then(() => {
-    console.log('Se ha conectado a geolocalizacion');
-}).catch(err => {
-    console.log(err, "Hubo un error");
-});
-//load passport strategies
-require('./config/pasaporte/passport.js')(passport, models.cuenta, models.persona, models.rol);
-
-
 app.use(session({
-    secret: 'cuarto-sistemas-A',
+    secret: 'Katty-Jhomaira',
     resave: true,
     saveUninitialized: true,
     pauseStream: true
@@ -45,6 +34,20 @@ app.use(session({
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(passport.initialize()); 
 app.use(passport.session()); // persistent login sessions
+
+
+//modelos
+var models = require('./models/ind');
+models.sequelize.sync().then(() => {
+    console.log('Se ha conectado a geolocalizacion');
+}).catch(err => {
+    console.log(err, "Hubo un error");
+});
+
+//load passport strategies
+require('./config/pasaporte/passport.js')(passport, models.cuenta, models.persona, models.rol);
+
+
 
 app.use(morgan('dev'));
 app.use(express.json());
