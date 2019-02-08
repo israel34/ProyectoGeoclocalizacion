@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var categoria = require('../controllers/CategoriaController');
+var categoria = require('../controllers/CategoriaControlller');
 var categoriaController = new categoria;
 var dependencia = require('../controllers/DependenciaController');
 var dependenciaController = new dependencia;
@@ -27,7 +27,7 @@ router.get('/iniciar_sesion', function (req, res, next) {
 router.get('/registrar', function (req, res, next) {
     res.render('registrar', {title: 'Registrate'});
 });
-router.get('/administracion', categoriaController.verCategoria );
+router.get('/administracion', dependenciaController.verDependencia );
 
 router.post('/registrar',
         passport.authenticate('local-signup', {

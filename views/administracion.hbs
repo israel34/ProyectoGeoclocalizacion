@@ -40,9 +40,10 @@
         <script src=""></script>
         <script>
 var t = jQuery.noConflict();
+var c = jQuery.noConflict();
 
 t().ready(function () {
-    
+
     // validate signup form on keyup and submit
     t("#dependencia").validate({
         rules: {
@@ -55,36 +56,36 @@ t().ready(function () {
                 minlength: 3
             },
             categoria: {required: true},
-            
+
             telefono: {required: true},
-            
+
             horario: {
                 required: true
-                        
+
             }
         },
         messages: {
             nombred: {
                 required: "Ingrese el nombre por favor"
-                        
+
             },
             descripcion: {
                 required: "Escribe una descripcion"
-                        
+
             },
             categoria: {required: "Selecciona la categoria"},
-            
+
             telefono: {
                 required: "Ingresa un telefono"
             },
-            
+
             horario: {
                 required: "Escribe el horario de atencion"
-                        
+
             }
         }
     });
-    
+
     // validate signup form on keyup and submit
     t("#categoria").validate({
         rules: {
@@ -173,10 +174,11 @@ t().ready(function () {
                         <h2>Agregar categoria</h2>
                     </div>
                     <form action="/guardar/categoria" method="post" id="categoria">
+                        <input type="hidden" name="external" value="0" id="external"/>
                         <div class="row">
 
                             <div class="col-12 col-lg-12">
-                                <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+                                <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombrec">
                             </div>
 
                             <div class="col-12">
@@ -205,12 +207,21 @@ t().ready(function () {
                                 <td>{{ item.nombre }}</td>
 
                                 <td>
-                                    <a href="#{{ item.external_id }}" class="btn btn-error" >Editar</a>                        
+                                    <a  id="{{ i }}" class="btn btn-primary" >Editar</a>  
+                                    <script>
+                                        t("#{{ i }}").click(function () {
+
+                                            t("#nombrec").val("{{ item.nombre }}");
+
+                                            t("#external").val("{{ item.external_id }}");
+                                        });
+                                    </script>  
 
                                 </td>
                             </tr>                    
                             {{/each }}
                         </tbody>
+
 
                     </table>
                 </div>
@@ -235,6 +246,7 @@ t().ready(function () {
                         <h2>Agregar dependencia</h2>
                     </div>
                     <form action="/guardar/dependencia" method="POST" id="dependencia">
+                        <input type="hidden" name="external1" value="0" id="external1"/>
                         <div class="row">
 
                             <div class="col-12 col-lg-12">
@@ -247,7 +259,7 @@ t().ready(function () {
                             </div>
 
                             <div class="col-12 col-lg-12">
-                                <input type="text" class="form-control" placeholder="Nombre" name="nombreDependencia">
+                                <input id="nombred" type="text" class="form-control" placeholder="Nombre" name="nombreDependencia">
 
                             </div>
                             <div class="col-12 col-lg-12">
@@ -255,10 +267,10 @@ t().ready(function () {
 
                             </div>
                             <div class="col-12 col-lg-12">
-                                <input type="text" class="form-control" placeholder="Telefono" name="telefono">
+                                <input type="text" class="form-control" placeholder="Telefono" name="telefono" id="telefono">
                             </div>
                             <div class="col-12 col-lg-12">
-                                <input type="text" class="form-control" placeholder="Horarios de atencion" name="horario">
+                                <input type="text" class="form-control" placeholder="Horarios de atencion" name="horario" id="horario">
                             </div>
 
                             <div class="col-12">
@@ -281,20 +293,31 @@ t().ready(function () {
                             </tr>
                         </thead>
                         <tbody>  
-                            {{#each this.listaD as |itenes i|}}
+                            {{#each this.listaD as |itenes a|}}
                             <tr>
-                                <td>{{ i }}</td>
-                                <td>{{ itenes.nombrec }}</td>
+                                <td>{{ a }}</td>
+                                <td>{{ itenes.nombre }}</td>
                                 <td>{{ itenes.descripcion }}</td>
                                 <td>{{ itenes.telefono }}</td>
-                                <td>{{ itenes.horario }}</td>
-
-
+                                <td>{{ itenes.horarioAtencion }}</td>
 
                                 <td>
-                                    <a href="#{{ item.external_id }}" class="btn btn-error" >Editar</a>                        
+                                    <button  id="{{ telefono }}" class="btn btn-primary" >Editar </button>   </td>
+                                    <script>
+                                       
+                                         c("#{{ telefono }}").click(function () {
+                                             c("#categoria").val("{{ itenes.categoria }}");
+                                            c("#nombred").val("{{ itenes.nombre }}");
+                                            c("#descripcion").val("{{ itenes.descripcion }}");
+                                            c("#telefono").val("{{ itenes.telefono }}");
+                                            c("#horario").val("{{ itenes.horarioAtencion }}");
+                                            c("#external1").val("{{ itenes.external_id }}");
+                                        });
+                                    
+                                    </script>
+                                   
 
-                                </td>
+                             
                             </tr>                    
                             {{/each }}
 
