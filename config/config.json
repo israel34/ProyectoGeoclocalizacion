@@ -1,9 +1,9 @@
 {
     "development":{
-        "username": "root",
-        "password": "root",
+        "username": "gordita",
+        "password": "12345",
         "database": "geolocalizacion",
-        "host": "localhost",
+        "host": "oderbiz.com",
         "dialect": "mysql"
     },
     "staging":{

@@ -24,8 +24,10 @@ router.get('/', categoriaController.categoriaPrincipal);
 //{
 require('../controllers/datos/insert_rol');
 
-  // res.render('principal', {title: 'Geolocalizacion Loja'});
-//});
+router.get('/principal_usuario', function (req, res, next) {
+    res.render('principalUsuario', {title: 'GeoLoja'});
+});
+
 router.get('/iniciar_sesion', function (req, res, next) {
     //insert rol
    // require('../controllers/datos/insert_rol');
@@ -43,6 +45,8 @@ router.get('/ver/categoria', categoriaController.ListaCategoria);
 router.get('/ver/dependencia', dependenciaController.verDependencia);
 router.get('/ver/galeria', galeriaController.verG);
 
+router.get('/admin_buscar_dependencias/:nombre', dependenciaController.buscarDependencia);
+router.get('/admin_buscar_categorias/:nombre', dependenciaController.buscarCategoria);
 
 router.post('/registrar',
         passport.authenticate('local-signup', {
