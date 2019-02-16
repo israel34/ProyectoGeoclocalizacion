@@ -3,10 +3,11 @@ var models = require('../models/ind');
 var Dependencia = models.dependencia;
 var Categoria = models.categoria;
 const uuidv4 = require('uuid/v4');
+
 class DependenciaController {
 
     guardar(req, res, next) {
-        console.log('external.....................' + req.body.external1);
+       // console.log('external.....................' + req.body.external1);
         if (req.body.external1 == 0) {
             Dependencia.create({
             nombre: req.body.nombreDependencia,
@@ -45,18 +46,15 @@ class DependenciaController {
     verDependencia(req, res) {
         Categoria.findAll({}).then(function (categoria) { 
             if (categoria) {
-                Dependencia.findAll({include: {model: Categoria }}).then(function (listaCategoria) {
+                Dependencia.findAll({include: {model: Categoria }}).then(function (listaD) {
             //console.log('katy.................................' );
-            res.render('administracion',
+            res.render('dependencia',
                     {
                         rols: req.user.rol,
-                        listaD: listaCategoria,
-                        title: 'Administracion',
+                        listaD: listaD,
+                        title: 'Dependencia',
                         categoria: categoria
-                        
-
-
-                    });
+                   });
         });
 
             }
@@ -65,6 +63,10 @@ class DependenciaController {
        // console.log('Prueba...........' + req.user);
         
     }
+   
+
+
+    
 
 }
 module.exports = DependenciaController;

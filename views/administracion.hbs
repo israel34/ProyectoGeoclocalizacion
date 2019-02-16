@@ -37,81 +37,14 @@
                 <img class="preload-3" src="img/core-img/preload-3.png" alt="">
             </div>
         </div>
-        <script src=""></script>
-        <script>
-var t = jQuery.noConflict();
-var c = jQuery.noConflict();
-
-t().ready(function () {
-
-    // validate signup form on keyup and submit
-    t("#dependencia").validate({
-        rules: {
-            nombred: {
-                required: true,
-                minlength: 3
-            },
-            descripcion: {
-                required: true,
-                minlength: 3
-            },
-            categoria: {required: true},
-
-            telefono: {required: true},
-
-            horario: {
-                required: true
-
-            }
-        },
-        messages: {
-            nombred: {
-                required: "Ingrese el nombre por favor"
-
-            },
-            descripcion: {
-                required: "Escribe una descripcion"
-
-            },
-            categoria: {required: "Selecciona la categoria"},
-
-            telefono: {
-                required: "Ingresa un telefono"
-            },
-
-            horario: {
-                required: "Escribe el horario de atencion"
-
-            }
-        }
-    });
-
-    // validate signup form on keyup and submit
-    t("#categoria").validate({
-        rules: {
-            nombre: {
-                required: true,
-                minlength: 3
-            }
-        },
-        messages: {
-            nombre: {
-                required: "Ingrese el nombre por favor",
-                minlength: "Minimo 2 caracteres"
-            }
-        }
-    });
-});
 
 
-
-        </script>
 
 
 
 
         <!-- ***** Header Area Start ***** -->
-        <header class="header_area" id="header" style="background: #ffffff">
+        <header class="header_area" id="header" style="background: #040505">
             <div class="container h-100">
                 <div class="row h-100">
                     <div class="col-12 h-100">
@@ -130,16 +63,17 @@ t().ready(function () {
                                         <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="index.html">Home</a>
-                                            <a class="dropdown-item" href="menu.html">Menu</a>
-                                            <a class="dropdown-item" href="regular-page.html">Regular Page</a>
-                                            <a class="dropdown-item" href="contact.html">Contact</a>
-                                        </div>
+                                        <a class="nav-link " href="/ver/categoria">Categorias</a>
+
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/iniciar_sesion">Cerrar sesion</a>
+                                        <a class="nav-link" href="/ver/dependencia">Dependencias</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/ver/galeria">Galeria</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/cerrar_sesion">Cerrar sesion</a>
                                     </li>
 
 
@@ -153,187 +87,92 @@ t().ready(function () {
             </div>
         </header>
         <!-- ***** Header Area End ***** -->
-
-
-
-        <!-- ****** seccion ****** -->
-        <section class="caviar-testimonials-area" id="testimonial">
+        <!-- ****** About Us Area Start ****** -->
+        <section class="caviar-about-us-area section-padding-150" id="about">
             <div class="container">
-                <div class="row">
-
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ****** Reservation Area Start ****** -->
-        <section class="caviar-reservation-area d-md-flex" id="reservation">
-            <div class="reservation-form-area d-flex justify-content-end">
-                <div class="reservation-form">
-                    <div class="section-heading">
-                        <h2>Agregar categoria</h2>
+                <!-- About Us Single Area -->
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-6">
+                        <div class="about-us-thumbnail wow fadeInUp" data-wow-delay="0.5s">
+                            <img src="img/bg-img/about-1.jpg" alt="">
+                        </div>
                     </div>
-                    <form action="/guardar/categoria" method="post" id="categoria">
-                        <input type="hidden" name="external" value="0" id="external"/>
-                        <div class="row">
-
-                            <div class="col-12 col-lg-12">
-                                <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombrec">
-                            </div>
-
-                            <div class="col-12">
-                                <button type="submit" class="btn caviar-btn"><span></span>Agregar categoria</button>
+                    <div class="col-12 col-md-6 col-lg-5 ml-md-auto">
+                        <div class="section-heading">
+                            <h2>About Us</h2>
+                        </div>
+                        <div class="about-us-content">
+                            <span>restaurant style</span>
+                            <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod. Etiam scelerisque eu enim et vestibulum. Mauris finibus, eros a faucibus varius, dui risus mattis massa, sed lobortis ante ante eget justo. Nam eu dolor lorem. Praesent blandit leo sit amet velit accumsan ultrices. Vestibulum nec libero vel sapien dictum euismod eu ac justo.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- About Us Single Area -->
+                <div class="about-us-second-part">
+                    <div class="row align-items-center pt-200">
+                        <div class="col-12 col-md-6 col-lg-5">
+                            <div class="about-us-content">
+                                <span>our chef</span>
+                                <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod. Etiam scelerisque eu enim et vestibulum. Mauris finibus, eros a faucibus varius, dui risus mattis massa, sed lobortis ante ante eget justo.</p>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <div class="reservation-form-area d-flex justify-content-end">
-                <div class="reservation-form">
-                    <div class="section-heading">
-                        <h2>Lista de categorias</h2>
-                    </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nro</th><th>Nombre</th><th>Accion</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {{#each this.categoria as |item i|}}
-                            <tr>
-                                <td>{{ i }}</td>
-                                <td>{{ item.nombre }}</td>
-
-                                <td>
-                                    <a  id="{{ i }}" class="btn btn-primary" >Editar</a>  
-                                    <script>
-                                        t("#{{ i }}").click(function () {
-
-                                            t("#nombrec").val("{{ item.nombre }}");
-
-                                            t("#external").val("{{ item.external_id }}");
-                                        });
-                                    </script>  
-
-                                </td>
-                            </tr>                    
-                            {{/each }}
-                        </tbody>
-
-
-                    </table>
-                </div>
-            </div>
-        </section>
-        <!-- ****** Reservation Area End ****** -->
-        <section class="caviar-testimonials-area" id="testimonial">
-            <div class="container">
-                <div class="row">
-
-                </div>
-            </div>
-        </section>
-        <!-- ****** dependencias ****** -->
-
-
-
-        <section class="caviar-reservation-area d-md-flex" id="reservation">
-            <div class="reservation-form-area d-flex justify-content-end">
-                <div class="reservation-form">
-                    <div class="section-heading">
-                        <h2>Agregar dependencia</h2>
-                    </div>
-                    <form action="/guardar/dependencia" method="POST" id="dependencia">
-                        <input type="hidden" name="external1" value="0" id="external1"/>
-                        <div class="row">
-
-                            <div class="col-12 col-lg-12">
-                                <select class="col-lg-12 btn" style="background: #edeff2" name="categoria" id="categoria">
-                                    {{#each this.categoria as |item|}}
-                                    <option value="{{ item.id }}" > {{item.nombre}}</option>
-                                    {{/each}}
-                                </select>
-
+                        <div class="col-12 col-md-6 ml-md-auto">
+                            <div class="about-us-thumbnail wow fadeInUp" data-wow-delay="0.5s">
+                                <img src="img/bg-img/about-2.jpg" alt="">
                             </div>
-
-                            <div class="col-12 col-lg-12">
-                                <input id="nombred" type="text" class="form-control" placeholder="Nombre" name="nombreDependencia">
-
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <textarea  placeholder="Descripcion" class="form-control" name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
-
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <input type="text" class="form-control" placeholder="Telefono" name="telefono" id="telefono">
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <input type="text" class="form-control" placeholder="Horarios de atencion" name="horario" id="horario">
-                            </div>
-
-                            <div class="col-12">
-                                <button type="submit" class="btn caviar-btn"><span></span>Agregar dependencia</button>
-                            </div>
-
                         </div>
-                    </form>
-                </div>
-            </div>
-            <div class="reservation-form-area d-flex justify-content-end">
-                <div class="">
-                    <div class="section-heading">
-                        <h2>Lista de dependencias</h2>
                     </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nro</th><th>Nombre</th><th>Descripcion</th><th>Telefono</th><th>Horario Atencion</th><th>Accion</th>
-                            </tr>
-                        </thead>
-                        <tbody>  
-                            {{#each this.listaD as |itenes a|}}
-                            <tr>
-                                <td>{{ a }}</td>
-                                <td>{{ itenes.nombre }}</td>
-                                <td>{{ itenes.descripcion }}</td>
-                                <td>{{ itenes.telefono }}</td>
-                                <td>{{ itenes.horarioAtencion }}</td>
-
-                                <td>
-                                    <button  id="{{ telefono }}" class="btn btn-primary" >Editar </button>   </td>
-                                    <script>
-                                       
-                                         c("#{{ telefono }}").click(function () {
-                                             c("#categoria").val("{{ itenes.categoria }}");
-                                            c("#nombred").val("{{ itenes.nombre }}");
-                                            c("#descripcion").val("{{ itenes.descripcion }}");
-                                            c("#telefono").val("{{ itenes.telefono }}");
-                                            c("#horario").val("{{ itenes.horarioAtencion }}");
-                                            c("#external1").val("{{ itenes.external_id }}");
-                                        });
-                                    
-                                    </script>
-                                   
-
-                             
-                            </tr>                    
-                            {{/each }}
-
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </section>
-        <!-- ****** Reservation Area End ****** -->
-        <section class="caviar-testimonials-area" id="testimonial">
+        <!-- ****** About Us Area End ****** -->
+
+        <!-- ****** Dish Menu Area Start ****** -->
+        <section class="caviar-dish-menu" id="menu">
             <div class="container">
                 <div class="row">
-
+                    <div class="col-12 menu-heading">
+                        <div class="section-heading text-center">
+                            <h2>Special</h2>
+                        </div>
+                        <!-- btn -->
+                        <a href="menu.html" class="btn caviar-btn"><span></span> View The Menu</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="caviar-single-dish wow fadeInUp" data-wow-delay="0.5s">
+                            <img src="img/menu-img/dish-1.png" alt="">
+                            <div class="dish-info">
+                                <h6 class="dish-name">Lorem Ipsum Dolor Sit Amet</h6>
+                                <p class="dish-price">$45</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="caviar-single-dish wow fadeInUp" data-wow-delay="1s">
+                            <img src="img/menu-img/dish-2.png" alt="">
+                            <div class="dish-info">
+                                <h6 class="dish-name">Lorem Ipsum</h6>
+                                <p class="dish-price">$45</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="caviar-single-dish wow fadeInUp" data-wow-delay="1.5s">
+                            <img src="img/menu-img/dish-3.png" alt="">
+                            <div class="dish-info">
+                                <h6 class="dish-name">Lorem Ipsum Dolor Sit Amet</h6>
+                                <p class="dish-price">$45</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+        <!-- ****** Dish Menu Area End ****** -->
+
+
 
         <!-- ****** Footer Area Start ****** -->
         <footer class="caviar-footer-area">

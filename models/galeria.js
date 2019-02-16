@@ -19,7 +19,7 @@ module.exports = function (sequelize, Sequelize) {
     });
     
     Galeria.belongsTo(Dependencia, {
-        foreignKey: 'id_galeria',
+        foreignKey: 'id_dependencia',
         constraints: false
     });
 

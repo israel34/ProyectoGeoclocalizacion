@@ -57,10 +57,9 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="index.html">Home</a>
-                                        <a class="dropdown-item" href="menu.html">Menu</a>
-                                        <a class="dropdown-item" href="regular-page.html">Regular Page</a>
-                                        <a class="dropdown-item" href="contact.html">Contact</a>
+                                         {{#each this.categoria as |item|}}
+                                        <a class="dropdown-item" href="">{{item.nombre}}</a>                                     
+                                        {{/each}}
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -97,8 +96,8 @@
                     <div class="row h-100 align-items-center">
                         <div class="col-11 col-md-6 col-lg-4">
                             <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
-                                <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
+                                <h2>Geolocalización Loja</h2>
+                                <p></p>
                                 <a href="#" class="btn caviar-btn"><span></span> Reservation</a>
                             </div>
                         </div>
@@ -113,7 +112,7 @@
                     <div class="row h-100 align-items-center">
                         <div class="col-11 col-md-6 col-lg-4">
                             <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
+                                <h2>Geolocalización Loja</h2>
                                 <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
                                 <a href="#" class="btn caviar-btn"><span></span> Reservation</a>
                             </div>
