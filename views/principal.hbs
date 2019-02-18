@@ -56,6 +56,7 @@ $(document).ready(function () {
     $("#buscarDependencia").keyup(function () {
         var busqueda = $("#buscarDependencia").val();
         buscarDependencia(busqueda);
+        buscarPorCategoria(busqueda);
     });
 });
 
@@ -83,6 +84,33 @@ function buscarDependencia(busqueda) {
         }
     });
 }
+function buscarPorCategoria(busqueda) {
+    $.ajax({
+        url: '/admin_buscar_categorias/' + busqueda,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            var html = "";
+            data.forEach(categoria => {
+                categoria.forEach(dependencia => {
+                    html += ' <div class="col-md-4">';
+                    html += '<div class="card shadow" style="width: 20rem;">';
+                    html += '<div class="inner"><img class="card-img-top" src="img/3.jpg" alt="Card image cap"></div>';
+                    html += '<div class="card-body text-center">';
+                    html += '<h5 class="card-title">' + dependencia.nombre + '</h5>';
+                    html += '<p class="card-text">' + dependencia.descripcion + '</p>';
+                    html += '<a href="#" class="btn btn-primary">Ver ruta</a>';
+                    html += '  </div>';
+                    html += ' </div>';
+                    html += ' </div>';
+                });
+            });
+            $("div#lugarBuscado").html(html);
+        }, error: function (jqXHR, textStatus, errorThrown) {
+        }
+    });
+}
+
         </script>
 
         <!-- Fin Buscar Dependencias Script -->
@@ -185,6 +213,11 @@ function buscarDependencia(busqueda) {
 
             </div>
         </div>
+        
+        
+        
+        
+        
         <!-- ****** Cards Dependencias Fin  ****** -->
 
         <!-- ***** Contact Area Start ***** -->
@@ -193,7 +226,22 @@ function buscarDependencia(busqueda) {
 
         <!-- ***** Contact Area End ***** -->
 
-
+        <!-- ***** Lista Dependencias Inicio **** --->
+         <section class="caviar-reservation-area d-md-flex" id="reservation">
+        <div class="reservation-form-area d-flex justify-content-end">
+            <div class="reservation-form"><br>
+                <div class="section-heading">
+                    <h2>Lugares</h2>
+                </div>
+                
+            </div>
+        </div>
+        <div class="reservation-side-thumb wow fadeInRightBig" data-wow-delay="0.5s">
+           
+        </div>
+    </section>
+        <!-- ****** Lista Dependencias Fin ****** -->
+        
         <!-- ****** Footer Area Start ****** -->
         <footer class="caviar-footer-area">
             <div class="container">

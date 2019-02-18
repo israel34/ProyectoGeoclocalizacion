@@ -61,8 +61,8 @@ class DependenciaController {
 
         });
     }
-    
-     buscarDependencia(req, res) {
+
+    buscarDependencia(req, res) {
         var nombre = req.params.nombre;
         Dependencia.findAll({where: {nombre: {$like: '' + nombre + '%'}}}).then(function (dependencias) {
             res.status(200).json(dependencias);
@@ -70,22 +70,23 @@ class DependenciaController {
             res.status(500).json(err);
         });
     }
-    
-    buscarCategoria(req, res) {      
+
+    buscarCategoria(req, res) {
         var nombre = req.params.nombre;
         Categoria.findAll({where: {nombre: {$like: '' + nombre + '%'}}}).then(function (categorias) {
             if (categorias) {
-                Dependencia.findAll({where: {id_categoria:1}}).then(function (categorias) {
-                    res.status(200).json(categorias);
-                }).catch(function (err) {
-                    res.status(500).json(err);
+                console.log(categorias.length);
+                buscarDependencias([], categorias, 0, function (dependencias) {
+                    console.log(dependencias);
+                    res.status(200).json(dependencias);
                 });
             }
         }).catch(function (err) {
+            console.log(err);
             res.status(500).json(err);
         });
-        
-    }  
+
+    }
 
     /* 
      listarDependencia(req, res) {
@@ -97,6 +98,25 @@ class DependenciaController {
      }*/
 
 }
+
+function   buscarDependencias(dependencias, categorias, pos, callback) {
+    console.log('hola mundo valio la pena');
+    if (pos < categorias.length) {
+        var id_categoria = categorias[pos].dataValues.id;
+        console.log(id_categoria);
+        Dependencia.findAll({where: {id_categoria: id_categoria}}).then(function (aux) {
+            dependencias.push(aux);
+            pos = pos + 1;
+            buscarDependencias(dependencias, categorias, pos, callback);
+        }).catch(function (err) {
+            pos = pos + 1;
+            buscarDependencias(dependencias, categorias, pos, callback);
+        });
+    } else {
+        callback(dependencias);
+    }
+};
+
 module.exports = DependenciaController;
 
 

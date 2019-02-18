@@ -40,9 +40,10 @@
         <script src=""></script>
         <script>
 var t = jQuery.noConflict();
-var c = jQuery.noConflict();
+
 
 t().ready(function () {
+    
 
     // validate signup form on keyup and submit
     t("#dependencia").validate({
@@ -86,7 +87,7 @@ t().ready(function () {
         }
     });
 
-    
+});
 
         </script>
 
@@ -150,9 +151,6 @@ t().ready(function () {
             </div>
         </section>
         <!-- ****** dependencias ****** -->
-
-
-
         <section class="caviar-reservation-area d-md-flex">
             <div class="reservation-form-area d-flex justify-content-end">
                 <div class="reservation-form">
@@ -216,17 +214,17 @@ t().ready(function () {
                                     <td>{{ itenes.telefono }}</td>
                                     <td>{{ itenes.horarioAtencion }}</td>
                                     <td>
-                                        <button  id="{{ telefono }}" class="btn btn-primary" >Editar </button>  
+                                        <button  id="{{ a }}" class="btn btn-primary" >Editar </button>  
                                     </td>
                             <script>
 
-                                c("#{{ telefono }}").click(function () {
-                                    c("#categoria").val("{{ itenes.categoria }}");
-                                    c("#nombred").val("{{ itenes.nombre }}");
-                                    c("#descripcion").val("{{ itenes.descripcion }}");
-                                    c("#telefono").val("{{ itenes.telefono }}");
-                                    c("#horario").val("{{ itenes.horarioAtencion }}");
-                                    c("#external1").val("{{ itenes.external_id }}");
+                                t("#{{a }}").click(function () {
+                                    t("#categoria").val("{{ itenes.categoria }}");
+                                    t("#nombred").val("{{ itenes.nombre }}");
+                                    t("#descripcion").val("{{ itenes.descripcion }}");
+                                    t("#telefono").val("{{ itenes.telefono }}");
+                                    t("#horario").val("{{ itenes.horarioAtencion }}");
+                                    t("#external1").val("{{ itenes.external_id }}");
                                 });
 
                             </script>
