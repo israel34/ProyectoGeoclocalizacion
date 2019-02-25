@@ -11,6 +11,7 @@
         <!-- Title -->
         <title>{{title}}</title>
 
+
         <!-- Favicon -->
         <link rel="icon" href="img/core-img/favicon.ico">
 
@@ -22,24 +23,19 @@
         <link href="styleCard.css" rel="stylesheet">
         <!-- Script Ajax -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <style>
-            #map{
-                #map{
-                    height:25em;
-                }
-                h1{
-                    text-align: center;
-                }            }
-            </style>
 
-        </head>
+        <!-- mapa -->        
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN4pKzD21uzA00fgxJhSW69koN9Jx7Qcs&callback=initMap"></script>
+        <script src="/js/geolocalizacion.js"></script>      
+
+    </head>
 
 
 
-        <body>
+    <body>
 
-            <!-- Preloader -->
-            <div id="preloader">
+        <!-- Preloader -->
+        <div id="preloader">
             <div class="caviar-load"></div>
             <div class="preload-icons">
                 <img class="preload-1" src="img/core-img/preload-1.png" alt="">
@@ -56,7 +52,7 @@ $(document).ready(function () {
     $("#buscarDependencia").keyup(function () {
         var busqueda = $("#buscarDependencia").val();
         buscarDependencia(busqueda);
-        buscarPorCategoria(busqueda);
+        //buscarPorCategoria(busqueda);
     });
 });
 
@@ -67,19 +63,27 @@ function buscarDependencia(busqueda) {
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
             var html = "";
+            var puntos = [];
             for (var i = 0; i < data.length; i++) {
-                html += ' <div class="col-md-4">';
-                html += '<div class="card shadow" style="width: 20rem;">';
-                html += '<div class="inner"><img class="card-img-top" src="img/3.jpg" alt="Card image cap"></div>';
-                html += '<div class="card-body text-center">';
-                html += '<h5 class="card-title">' + data[i].nombre + '</h5>';
-                html += '<p class="card-text">' + data[i].descripcion + '</p>';
-                html += '<a href="#" class="btn btn-primary">Ver ruta</a>';
-                html += '  </div>';
+
+                html += '<div class="media border border-secondary"  style="width: 400px; height: 200px; margin: 15px auto;">';
+                html += '<img src="img/galeria/fiavl2017_cpr_5716.jpg" alt="Generic placeholder image" style="width: 150px; height: 150px;  margin: 15px;">';
+                html += '<div class="media-body" style="margin: 15px auto;">';
+                html += '<h6>' + data[i].nombre + '</h6>';
+                html += '<small style="width: 187px; height: 80px;float:left; overflow: hidden;">' + data[i].descripcion + '</small>';
+                html += '<a href="/principal_usuario" class="btn btn-primary">Ver ruta</a>';
+                html += '</div>';
                 html += ' </div>';
-                html += ' </div>';
+                if (data[i].latitud !== null && data[i].longitud !== null) {
+                puntos.push({"lng": data[i].longitud, "lat": data[i].latitud});                
+                }
             }
+            $("div#lugarBuscado").empty();
             $("div#lugarBuscado").html(html);
+
+            //puntos.push({"lng": "-79.1996443", "lat": "-4.0310106999999995"});
+            //puntos.push({"lng": "-79.20112487937621", "lat": "-4.030261539038454"});
+            pintar(puntos);
         }, error: function (jqXHR, textStatus, errorThrown) {
         }
     });
@@ -93,16 +97,15 @@ function buscarPorCategoria(busqueda) {
             var html = "";
             data.forEach(categoria => {
                 categoria.forEach(dependencia => {
-                    html += ' <div class="col-md-4">';
-                    html += '<div class="card shadow" style="width: 20rem;">';
-                    html += '<div class="inner"><img class="card-img-top" src="img/3.jpg" alt="Card image cap"></div>';
-                    html += '<div class="card-body text-center">';
-                    html += '<h5 class="card-title">' + dependencia.nombre + '</h5>';
-                    html += '<p class="card-text">' + dependencia.descripcion + '</p>';
-                    html += '<a href="#" class="btn btn-primary">Ver ruta</a>';
-                    html += '  </div>';
-                    html += ' </div>';
-                    html += ' </div>';
+
+                    html += '<div class="media border border-secondary"  style="width: 400px; height: 200px; margin: 15px auto;">';
+                    html += '<img src="img/galeria/fiavl2017_cpr_5716.jpg" alt="Generic placeholder image" style="width: 150px; height: 150px; margin: 15px;">';
+                    html += '<div class="media-body" style="margin: 15px auto;">';
+                    html += '<h6>' + dependencia.nombre + '</h6>';
+                    html += '<small style="width: 187px; height: 80px; float:left; overflow: hidden;">' + dependencia.descripcion + '</small>';
+                    html += '<div><a href="#" class="btn btn-primary">Ver ruta</a></div>';
+                    html += '</div>';
+                    html += '</div>';
                 });
             });
             $("div#lugarBuscado").html(html);
@@ -110,7 +113,6 @@ function buscarPorCategoria(busqueda) {
         }
     });
 }
-
         </script>
 
         <!-- Fin Buscar Dependencias Script -->
@@ -205,43 +207,25 @@ function buscarPorCategoria(busqueda) {
             </div>
         </section>
         <!-- ****** Welcome Area End ****** -->
-
-        <!-- ****** Cards Dependencias Comienzo  ****** -->
-
-        <div class="container">
-            <div class="row justify-content-center" id="lugarBuscado" >
-
+        
+        <!-- ****** Tabla Dependencias Comienzo  ****** -->
+        <section class=" d-md-flex align-items-center " >
+            <div class="reservation-form-area d-flex justify-content-end" style=" float: left; overflow: scroll; height: 800px" >
+                <div class=" reservation-form">
+                    <div class="container" >
+                        <div id="lugarBuscado" >
+                            <img src="img/pusheen.gif" alt="" style="   height: 800px;  width: 800px" >
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        
-        
-        
-        
-        <!-- ****** Cards Dependencias Fin  ****** -->
-
-        <!-- ***** Contact Area Start ***** -->
-        <section id="map"></section>
-
+            
+            <div class="caviar-map-area " id="map" style="height:800px; width: 1000px"></div>
+        </section>
+        <!-- ****** Tabla Dependencias Fin  ****** -->
 
         <!-- ***** Contact Area End ***** -->
 
-        <!-- ***** Lista Dependencias Inicio **** --->
-         <section class="caviar-reservation-area d-md-flex" id="reservation">
-        <div class="reservation-form-area d-flex justify-content-end">
-            <div class="reservation-form"><br>
-                <div class="section-heading">
-                    <h2>Lugares</h2>
-                </div>
-                
-            </div>
-        </div>
-        <div class="reservation-side-thumb wow fadeInRightBig" data-wow-delay="0.5s">
-           
-        </div>
-    </section>
-        <!-- ****** Lista Dependencias Fin ****** -->
-        
         <!-- ****** Footer Area Start ****** -->
         <footer class="caviar-footer-area">
             <div class="container">
@@ -264,8 +248,6 @@ function buscarPorCategoria(busqueda) {
         <!--JavaScript at end of body for optimized loading-->
         <!--<script type="text/javascript" src="js_m/materialize.min.js"></script>-->
         <!-- mapa-->
-        <script src="../public/main.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl6mfoS8AE5woNLZSUdmVN5ZrSjM1WVn4"></script>
 
         <!-- Jquery-2.2.4 js -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>

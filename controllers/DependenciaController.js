@@ -3,7 +3,7 @@ var models = require('../models/ind');
 var Dependencia = models.dependencia;
 var Categoria = models.categoria;
 const uuidv4 = require('uuid/v4');
-
+var Galeria = models.galeria;
 class DependenciaController {
 
     guardar(req, res, next) {
@@ -15,12 +15,14 @@ class DependenciaController {
                 telefono: req.body.telefono,
                 horarioAtencion: req.body.horario,
                 id_categoria: req.body.categoria,
-                external_id: uuidv4()
+                external_id: uuidv4(),
+                latitud: req.body.latitud,
+                longitud: req.body.longitud
 
             }).then(function (newDependencia) {
 
                 if (newDependencia) {
-                    res.redirect('/administracion');
+                    res.redirect('/ver/dependencia');
                     console.log('Se guardo dependencia');
                 }
             });
@@ -30,10 +32,12 @@ class DependenciaController {
                 descripcion: req.body.descripcion,
                 telefono: req.body.telefono,
                 horarioAtencion: req.body.horario,
-                id_categoria: req.body.categoria
+                id_categoria: req.body.categoria,
+                latitud: req.body.latitud,
+                longitud: req.body.longitud
 
             }, {where: {external_id: req.body.external1}}).then(function (updateddependencia, created) {
-                res.redirect('/administracion');
+                res.redirect('/ver/dependencia');
                 if (updateddependencia) {
                     req.flash('info', 'Se ha creado correctamente', false);
 
@@ -63,59 +67,69 @@ class DependenciaController {
     }
 
     buscarDependencia(req, res) {
-        var nombre = req.params.nombre;
-        Dependencia.findAll({where: {nombre: {$like: '' + nombre + '%'}}}).then(function (dependencias) {
-            res.status(200).json(dependencias);
-        }).catch(function (err) {
-            res.status(500).json(err);
-        });
-    }
+    var nombre = req.params.nombre;
+    Dependencia.findAll({where: {nombre: {$like: '' + nombre + '%'}}}).then(function (dependencias) {
+        if (dependencias) {
+            console.log(dependencias.length);
+            console.log(dependencias[0]);
+            console.log(dependencias[0].dataValues);
+            getGaleriasPorNombreDeDependencia([], dependencias, 0, function (resultado){
+                console.log(resultado);
+                res.status(200).json(resultado);
+            });
+        }
+        res.status(200).json(dependencias);
+    }).catch(function (err) {
+        res.status(500).json(err);
+    });
+}
 
-    buscarCategoria(req, res) {
-        var nombre = req.params.nombre;
-        Categoria.findAll({where: {nombre: {$like: '' + nombre + '%'}}}).then(function (categorias) {
-            if (categorias) {
-                console.log(categorias.length);
-                buscarDependencias([], categorias, 0, function (dependencias) {
-                    console.log(dependencias);
-                    res.status(200).json(dependencias);
-                });
-            }
-        }).catch(function (err) {
-            console.log(err);
-            res.status(500).json(err);
-        });
-
-    }
-
-    /* 
-     listarDependencia(req, res) {
-     Dependencia.findAll({where: {nombre: {}}}).then(function (dependencias) {
-     res.status(200).json(dependencias);
-     }).catch(function (err) {
-     res.status(500).json(err);
-     });
-     }*/
 
 }
 
-function   buscarDependencias(dependencias, categorias, pos, callback) {
-    console.log('hola mundo valio la pena');
-    if (pos < categorias.length) {
-        var id_categoria = categorias[pos].dataValues.id;
-        console.log(id_categoria);
-        Dependencia.findAll({where: {id_categoria: id_categoria}}).then(function (aux) {
-            dependencias.push(aux);
+function  getGalerias(galerias, dependencias, pos, callback) {
+  
+    if (pos < dependencias.length) {
+        var id_dependencia = dependencias[pos].dataValues.id;
+        Galeria.findAll({where: {id_dependencia: id_dependencia}}).then(function (galeria) {
+            galerias.push({
+                id_dependencia: id_dependencia,
+                url: galeria[0].dataValues.foto
+            });
             pos = pos + 1;
-            buscarDependencias(dependencias, categorias, pos, callback);
+            getGalerias(galerias, dependencias, pos, callback);
         }).catch(function (err) {
-            pos = pos + 1;
-            buscarDependencias(dependencias, categorias, pos, callback);
+            console.log("galerias " + err);
+            getGalerias(galerias, dependencias, pos, callback)
         });
     } else {
-        callback(dependencias);
+        callback(galerias);
     }
-};
+}
+
+function  getGaleriasPorNombreDeDependencia(resultado, dependencias, pos, callback) {
+   
+if (pos < dependencias.length) {
+    var id_dependencia = dependencias[pos].dataValues.id;
+    Galeria.findAll({where: {id_dependencia: id_dependencia}}).then(function (galeria) {
+        resultado.push({
+            dependencia: dependencia[pos].dataValues,
+            url: galeria[0].dataValues.foto
+        });
+        pos = pos + 1;
+        getGaleriasPorNombreDeDependencia(resultado, dependencias, pos, callback);
+    }).catch(function (err) {
+        console.log("galerias " + err);
+        getGaleriasPorNombreDeDependencia(resultado, dependencias, pos, callback)
+    });
+} else {
+    callback(resultado);
+}
+}
+
+
+
+
 
 module.exports = DependenciaController;
 

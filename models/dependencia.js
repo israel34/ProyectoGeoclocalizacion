@@ -25,7 +25,14 @@ module.exports = function (sequelize, Sequelize) {
         },
         external_id: {
             type: Sequelize.UUID
+        },
+        latitud: {
+            type: Sequelize.DOUBLE
+        },
+        longitud: {
+            type: Sequelize.DOUBLE
         }
+        
         
     },{timestamps: false,
         freezeTableName: true

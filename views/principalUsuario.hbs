@@ -7,10 +7,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <!-- mapa -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">     
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v3"></script>
-
+        <!-- mapa  AIzaSyCN4pKzD21uzA00fgxJhSW69koN9Jx7Qcs -->
+        
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN4pKzD21uzA00fgxJhSW69koN9Jx7Qcs&callback=initMap" type="text/javascript"></script>
+        <script src="/js/geolocalizacion.js"></script>    
+        
+        
+        
         <!-- galeria -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -144,28 +147,10 @@
         </div>
 
         <div class="caviar-map-area wow fadeInRightBig" id="mapa" style="height:100vh !important;"></div>
-        <script type="text/javascript">
-            var divMapa = document.getElementById('mapa');
-            navigator.geolocation.getCurrentPosition(fn_ok, fn_mal);
-            function fn_mal() {}
-            function fn_ok(rta) {
-            var lat = rta.coords.latitude;
-            var lon = rta.coords.longitude;
-            var gLatLon = new google.maps.LatLng(lat, lon);
-            var objConfig = {
-                zoom: 17,
-                center: gLatLon
-            }
-            var gMapa = new google.maps.Map(divMapa, objConfig);
-            var objConfigMarker = {
-                position: gLatLon,
-                map: gMapa,
-                title: "Usted esta aca"
-            }
-            var gMarker = new google.maps.Marker(objConfigMarker);
-            }
-
-        </script>
+        
+        
+        
+        
     </div>
     <!-- ***** Fin Informacion Dependencia***** -->
 
@@ -357,6 +342,11 @@
 
     <!-- Jquery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            initMap();
+        });
+    </script>
     <!-- Popper js -->
     <script src="js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap-4 js -->

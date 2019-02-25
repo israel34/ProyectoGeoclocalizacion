@@ -24,6 +24,9 @@
 
 
         <script src="../../jquery_validation.js"></script>
+         <!-- mapa -->        
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN4pKzD21uzA00fgxJhSW69koN9Jx7Qcs&callback=initMap"></script>
+            <script src="/js/geolocalizacion.js"></script>
 
     </head>
 
@@ -184,61 +187,29 @@ t().ready(function () {
                             <div class="col-12 col-lg-12">
                                 <input type="text" class="form-control" placeholder="Horarios de atencion" name="horario" id="horario">
                             </div>
+                            <div class="col-12 col-lg-12">
+                                <input type="text" class="form-control" placeholder="Longitud" name="longitud" id="txt_long" readonly>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <input type="text" class="form-control" placeholder="Latitud" name="latitud" id="txt_lat" readonly>
+                            </div>
+                            <div id="map" style="width: 500px; height: 400px;">
+                                
+                            </div>
+                            
                            
                             <div class="col-12 "><br>
                                 <button type="submit" class="btn caviar-btn"><span></span>Agregar dependencia</button>
                             </div>
+                            
 
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="reservation-form-area d-flex justify-content-end">
-             <div class="reservation-form">
-                        <div class="section-heading">
-                            <h2>Lista de dependencias</h2>
-                        </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nro</th><th>Nombre</th><th>Descripcion</th><th>Telefono</th><th>Horario Atencion</th><th>Accion</th>
-                                </tr>
-                            </thead>
-                            <tbody>  
-                                {{#each this.listaD as |itenes a|}}
-                                <tr>
-                                    <td>{{ a }}</td>
-                                    <td>{{ itenes.nombre }}</td>
-                                    <td>{{ itenes.descripcion }}</td>                                   
-                                    <td>{{ itenes.telefono }}</td>
-                                    <td>{{ itenes.horarioAtencion }}</td>
-                                    <td>
-                                        <button  id="{{ a }}" class="btn btn-primary" >Editar </button>  
-                                    </td>
-                            <script>
-
-                                t("#{{a }}").click(function () {
-                                    t("#categoria").val("{{ itenes.categoria }}");
-                                    t("#nombred").val("{{ itenes.nombre }}");
-                                    t("#descripcion").val("{{ itenes.descripcion }}");
-                                    t("#telefono").val("{{ itenes.telefono }}");
-                                    t("#horario").val("{{ itenes.horarioAtencion }}");
-                                    t("#external1").val("{{ itenes.external_id }}");
-                                });
-
-                            </script>
-
-
-
-                            </tr>                    
-                            {{/each }}
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-           
+            
+             
         </section>
         <!-- ****** Reservation Area End ****** -->
         
@@ -252,9 +223,54 @@ t().ready(function () {
         </section>
         
         
-        <section class="caviar-testimonials-area" id="testimonial">
+        <section >
             <div class="container">
                 <div class="row">
+                    <div >
+                        <div class="section-heading">
+                            <h2>Lista de dependencias</h2>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nro</th><th>Categoria</th><th>Nombre</th><th>Descripcion</th><th>Telefono</th><th>Horario Atencion</th><th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>  
+                                {{#each this.listaD as |itenes a|}}
+                                <tr>
+                                    <td>{{ a }}</td>
+                                    <td>{{itenes.categorium.nombre}}</td>
+                                    <td>{{ itenes.nombre }}</td>
+                                    <td>{{ itenes.descripcion }}</td>                                   
+                                    <td>{{ itenes.telefono }}</td>
+                                    <td>{{ itenes.horarioAtencion }}</td>
+                                    <td>
+                                        <button  id="{{ a }}" class="btn btn-primary" >Editar </button>  
+                                    </td>
+                            <script>
+
+                                t("#{{ a }}").click(function () {
+                                    t("#categoria").val("{{ itenes.categorium.id}}");
+                                    t("#nombred").val("{{ itenes.nombre }}");
+                                    t("#descripcion").val("{{ itenes.descripcion }}");
+                                    t("#telefono").val("{{ itenes.telefono }}");
+                                    t("#horario").val("{{ itenes.horarioAtencion }}");
+                                    t("#external1").val("{{ itenes.external_id }}");
+                                    window.scrollTo(0, 1);
+                                });
+
+                            </script>
+
+
+
+                            </tr>                    
+                            {{/each }}
+
+                            </tbody>
+                        </table>
+                    </div>
+           
 
                     
 

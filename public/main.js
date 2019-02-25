@@ -1,5 +1,5 @@
 const conseguirLugares = ()=>{
-    fetch('json')
+    fetch('')
     .then(response => response.json())
     .then(lugares => {
         console.log(lugares);

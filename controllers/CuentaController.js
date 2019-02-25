@@ -6,6 +6,11 @@ class CuentaController{
         req.session.destroy();
         res.redirect("/");
     }
+    principalUsuario(req, res){
+        res.render('principalUsuario',
+        {title: 'Usuario'}
+        );
+    }
 }
 module.exports = CuentaController;
  
