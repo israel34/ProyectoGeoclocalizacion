@@ -84,7 +84,22 @@ class DependenciaController {
             res.status(500).json(err);
         });
     }
+    buscarCategoria(req, res) {
+        var nombre = req.params.nombre;
+        Categoria.findAll({where: {nombre:  nombre }}).then(function (categorias) {
+            if (categorias) {
+                console.log(categorias.length);
+                buscarDependencias([], categorias, 0, function (dependencias) {
+                    console.log(dependencias);
+                    res.status(200).json(dependencias);
+                });
+            }
+        }).catch(function (err) {
+            console.log(err);
+            res.status(500).json(err);
+        });
 
+    }
 }
 
 function getGalerias(galerias, dependencias, pos, callback) {

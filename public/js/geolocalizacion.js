@@ -4,6 +4,9 @@
 // locate you.
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
+var coordenadasmias = [];
+var directionsService;
+var directionsDisplay;
 //registrar
 map = null;
 function initMap() {
@@ -11,6 +14,9 @@ function initMap() {
         center: {lat: -3.996089, lng: -79.205697},
         zoom: 17
     });
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsDisplay.setMap(map);
     var infoWindow = new google.maps.InfoWindow({map: map});
     var coordsDiv = document.getElementById('coords');
 
@@ -22,6 +28,8 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+
+            coordenadasmias = pos;
 
             //infoWindow.setPosition(pos);
             //infoWindow.setContent('Location found.');
@@ -42,7 +50,7 @@ function initMap() {
 
     // This event listener calls addMarker() when the map is clicked.
     google.maps.event.addListener(map, 'click', function (event) {
-        addMarker(event.latLng, map);
+        //addMarker(event.latLng, map);
     });
 
     // Add a marker at the center of the map.
@@ -97,13 +105,14 @@ function cargarDireccion(geocoder, latlng, map) {
                 //direccion.value = results[0].formatted_address;
                 console.log(results);
                 //if(latlng['lat'] == 'function(){return a}' || latlng['lat'] == 'function(){return b}') {
-                if (isNaN(latlng['lat']) || isNaN(latlng['lat'])) {
-                    txt_lat.value = latlng.lat();
-                    txt_long.value = latlng.lng();
-                } else {
-                    txt_lat.value = latlng['lat'];
-                    txt_long.value = latlng['lng'];
-
+                if(txt_lat!=null && txt_long!=null){
+                    if (isNaN(latlng['lat']) || isNaN(latlng['lat'])) {
+                        txt_lat.value = latlng.lat();
+                        txt_long.value = latlng.lng();
+                    } else {
+                        txt_lat.value = latlng['lat'];
+                        txt_long.value = latlng['lng'];
+                    }
                 }
                 //console.log(results[1].formatted_address);
                 //txt_ciudad.value = (results[2].formatted_address);
@@ -117,6 +126,7 @@ function cargarDireccion(geocoder, latlng, map) {
         }
     });
 }
+
 var marcadores = [];
 
 function deleteMarkers(map) {
@@ -145,6 +155,7 @@ function pintar(puntos) {
         });
         marcadores.push(marker);
     }
+    map.setZoom(14);
 }
 
 // Adds a marker to the map.
@@ -165,4 +176,3 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
 }
-

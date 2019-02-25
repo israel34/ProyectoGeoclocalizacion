@@ -11,16 +11,15 @@
         <!-- Title -->
         <title>{{title}}</title>
 
-
         <!-- Favicon -->
         <link rel="icon" href="img/core-img/favicon.ico">
 
         <!-- Core Stylesheet -->
         <link href="style.css" rel="stylesheet">
+        
         <!-- Responsive CSS -->
         <link href="css/responsive/responsive.css" rel="stylesheet">
-        <!-- Cards Stylesheet -->
-        <link href="styleCard.css" rel="stylesheet">
+      
         <!-- Script Ajax -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
@@ -46,16 +45,32 @@
         <!-- Fin Preloader -->
 
         <!-- Buscar Dependencias Script -->
-
-        <script>
+                <script>
 $(document).ready(function () {
     $("#buscarDependencia").keyup(function () {
         var busqueda = $("#buscarDependencia").val();
         buscarDependencia(busqueda);
         //buscarPorCategoria(busqueda);
     });
+    $("body").on("click", ".btn_ruta", function(){
+        var lat = parseFloat($(this).attr('name').split('/')[0]);
+        var lng = parseFloat($(this).attr('name').split('/')[1]);
+        directionsService.route({
+            origin: coordenadasmias,
+            destination: {
+                lat: lat,
+                lng: lng
+            },
+            travelMode: 'DRIVING'
+        }, function (response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    });
 });
-
 function buscarDependencia(busqueda) {
     $.ajax({
         url: '/admin_buscar_dependencias/' + busqueda,
@@ -73,9 +88,9 @@ function buscarDependencia(busqueda) {
                 else
                     html += '<img src="img/galeria/fiavl2017_cpr_5716.jpg" alt="Generic placeholder image" style="width: 150px; height: 150px;  margin: 15px;">';
                 html += '<div class="media-body" style="margin: 15px auto;">';
-                html += ' <a href="/principal_usuario"><h6>' + data[i].dependencia.nombre + '</h6> </a>';
+                html += '<h6>' + data[i].dependencia.nombre + '</h6>';
                 html += '<small style="width: 187px; height: 80px;float:left; overflow: hidden;">' + data[i].dependencia.descripcion + '</small>';
-                html += '<a href="#map" class="btn btn-primary">Ver ruta</a>';
+                html += '<a href="#!" class="btn btn-primary btn_ruta" name="'+data[i].dependencia.latitud+'/'+data[i].dependencia.longitud+'">Ver ruta</a>';
                 html += '</div>';
                 html += ' </div>';
                 if (data[i].dependencia.latitud !== null && data[i].dependencia.longitud !== null) {
@@ -84,15 +99,14 @@ function buscarDependencia(busqueda) {
             }
             $("div#lugarBuscado").empty();
             $("div#lugarBuscado").html(html);
-
-            //puntos.push({"lng": "-79.1996443", "lat": "-4.0310106999999995"});
-            //puntos.push({"lng": "-79.20112487937621", "lat": "-4.030261539038454"});
             pintar(puntos);
         }, error: function (jqXHR, textStatus, errorThrown) {
         }
     });
 }
-        </script>
+        </script>        
+        <!-- Buscar Dependencias Script Fin -->
+       
         <!-- ***** Header Area Start ***** -->
         <header class="header_area" id="header">
             <div class="container h-100">
@@ -115,7 +129,7 @@ function buscarDependencia(busqueda) {
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             {{#each this.categoria as |item|}}
-                                            <a class="dropdown-item" href="">{{item.nombre}}</a>                                     
+                                            <a class="dropdown-item" href="{{ item.id }}">{{item.nombre}}</a>                                     
                                             {{/each}}
                                         </div>
                                     </li>
@@ -192,7 +206,7 @@ function buscarDependencia(busqueda) {
                             <br>
                             <br>
                             <br>
-                            <img src="img/pusheen.gif" alt="" style="   height: 600px;  width: 600px" >
+                            <img src="img/pusheen.gif" alt="" style="margin-top:50%;width:100%;" >
                         </div>
                     </div>
                 </div>
