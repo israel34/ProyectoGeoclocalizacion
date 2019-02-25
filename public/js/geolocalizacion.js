@@ -117,9 +117,17 @@ function cargarDireccion(geocoder, latlng, map) {
         }
     });
 }
+var marcadores = [];
+
+function deleteMarkers(map) {
+    for (var i = 0; i < marcadores.length; i++) {
+        marcadores[i].setMap(map);
+    }
+}
 
 function pintar(puntos) {    
     //console.log("xxxx "+map);
+    deleteMarkers(null);
     for (var i = 0; i < puntos.length; i++) {
         var url_icono = 'http://maps.google.com/mapfiles/ms/icons/blue-pushpin.png';
         var punto = puntos[i];
@@ -135,6 +143,7 @@ function pintar(puntos) {
                 url: url_icono
             }
         });
+        marcadores.push(marker);
     }
 }
 

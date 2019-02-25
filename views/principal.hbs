@@ -65,17 +65,21 @@ function buscarDependencia(busqueda) {
             var html = "";
             var puntos = [];
             for (var i = 0; i < data.length; i++) {
-
+                //data[i].dependencia -> contiene la informacion de la dependencia
+                //data[i].url -> contiene la direccion de la foto
                 html += '<div class="media border border-secondary"  style="width: 400px; height: 200px; margin: 15px auto;">';
-                html += '<img src="img/galeria/fiavl2017_cpr_5716.jpg" alt="Generic placeholder image" style="width: 150px; height: 150px;  margin: 15px;">';
+                if(data[i].url!=='')
+                    html += '<img src="img/galeria/'+data[i].url+'" alt="Generic placeholder image" style="width: 150px; height: 150px;  margin: 15px;">';
+                else
+                    html += '<img src="img/galeria/fiavl2017_cpr_5716.jpg" alt="Generic placeholder image" style="width: 150px; height: 150px;  margin: 15px;">';
                 html += '<div class="media-body" style="margin: 15px auto;">';
-                html += '<h6>' + data[i].nombre + '</h6>';
-                html += '<small style="width: 187px; height: 80px;float:left; overflow: hidden;">' + data[i].descripcion + '</small>';
-                html += '<a href="/principal_usuario" class="btn btn-primary">Ver ruta</a>';
+                html += ' <a href="/principal_usuario"><h6>' + data[i].dependencia.nombre + '</h6> </a>';
+                html += '<small style="width: 187px; height: 80px;float:left; overflow: hidden;">' + data[i].dependencia.descripcion + '</small>';
+                html += '<a href="#map" class="btn btn-primary">Ver ruta</a>';
                 html += '</div>';
                 html += ' </div>';
-                if (data[i].latitud !== null && data[i].longitud !== null) {
-                puntos.push({"lng": data[i].longitud, "lat": data[i].latitud});                
+                if (data[i].dependencia.latitud !== null && data[i].dependencia.longitud !== null) {
+                puntos.push({"lng": data[i].dependencia.longitud, "lat": data[i].dependencia.latitud});                
                 }
             }
             $("div#lugarBuscado").empty();
@@ -88,36 +92,7 @@ function buscarDependencia(busqueda) {
         }
     });
 }
-function buscarPorCategoria(busqueda) {
-    $.ajax({
-        url: '/admin_buscar_categorias/' + busqueda,
-        type: 'GET',
-        dataType: 'json',
-        success: function (data, textStatus, jqXHR) {
-            var html = "";
-            data.forEach(categoria => {
-                categoria.forEach(dependencia => {
-
-                    html += '<div class="media border border-secondary"  style="width: 400px; height: 200px; margin: 15px auto;">';
-                    html += '<img src="img/galeria/fiavl2017_cpr_5716.jpg" alt="Generic placeholder image" style="width: 150px; height: 150px; margin: 15px;">';
-                    html += '<div class="media-body" style="margin: 15px auto;">';
-                    html += '<h6>' + dependencia.nombre + '</h6>';
-                    html += '<small style="width: 187px; height: 80px; float:left; overflow: hidden;">' + dependencia.descripcion + '</small>';
-                    html += '<div><a href="#" class="btn btn-primary">Ver ruta</a></div>';
-                    html += '</div>';
-                    html += '</div>';
-                });
-            });
-            $("div#lugarBuscado").html(html);
-        }, error: function (jqXHR, textStatus, errorThrown) {
-        }
-    });
-}
         </script>
-
-        <!-- Fin Buscar Dependencias Script -->
-
-
         <!-- ***** Header Area Start ***** -->
         <header class="header_area" id="header">
             <div class="container h-100">
@@ -214,7 +189,10 @@ function buscarPorCategoria(busqueda) {
                 <div class=" reservation-form">
                     <div class="container" >
                         <div id="lugarBuscado" >
-                            <img src="img/pusheen.gif" alt="" style="   height: 800px;  width: 800px" >
+                            <br>
+                            <br>
+                            <br>
+                            <img src="img/pusheen.gif" alt="" style="   height: 600px;  width: 600px" >
                         </div>
                     </div>
                 </div>

@@ -65,66 +65,49 @@ class DependenciaController {
 
         });
     }
-
     buscarDependencia(req, res) {
-    var nombre = req.params.nombre;
-    Dependencia.findAll({where: {nombre: {$like: '' + nombre + '%'}}}).then(function (dependencias) {
-        if (dependencias) {
-            console.log(dependencias.length);
-            console.log(dependencias[0]);
-            console.log(dependencias[0].dataValues);
-            getGaleriasPorNombreDeDependencia([], dependencias, 0, function (resultado){
-                console.log(resultado);
-                res.status(200).json(resultado);
-            });
-        }
-        res.status(200).json(dependencias);
-    }).catch(function (err) {
-        res.status(500).json(err);
-    });
+        var nombre = req.params.nombre;
+        Dependencia.findAll({where: {nombre: {$like: '' + nombre + '%'}}}).then(function (dependencias) {
+            if (dependencias) {
+                /*console.log(dependencias.length);
+                console.log(dependencias[0]);
+                console.log(dependencias[0].dataValues);*/
+                getGalerias([], dependencias, 0, function (galerias){
+                    console.log('volvi');
+                    console.log(galerias);
+                    res.status(200).json(galerias);
+                });
+                //res.status(200).json(dependencias);
+            }
+            //res.status(200).json(dependencias);
+        }).catch(function (err) {
+            res.status(500).json(err);
+        });
+    }
+
 }
 
-
-}
-
-function  getGalerias(galerias, dependencias, pos, callback) {
-  
+function getGalerias(galerias, dependencias, pos, callback) {
     if (pos < dependencias.length) {
         var id_dependencia = dependencias[pos].dataValues.id;
+        console.log(id_dependencia);
         Galeria.findAll({where: {id_dependencia: id_dependencia}}).then(function (galeria) {
+            console.log("galeria");
+            console.log(galeria.length);
             galerias.push({
-                id_dependencia: id_dependencia,
-                url: galeria[0].dataValues.foto
+                dependencia: dependencias[pos].dataValues,
+                url: (galeria && galeria.length>0)?galeria[0].dataValues.foto:''
             });
             pos = pos + 1;
             getGalerias(galerias, dependencias, pos, callback);
         }).catch(function (err) {
             console.log("galerias " + err);
+            pos = pos + 1;
             getGalerias(galerias, dependencias, pos, callback)
         });
     } else {
         callback(galerias);
     }
-}
-
-function  getGaleriasPorNombreDeDependencia(resultado, dependencias, pos, callback) {
-   
-if (pos < dependencias.length) {
-    var id_dependencia = dependencias[pos].dataValues.id;
-    Galeria.findAll({where: {id_dependencia: id_dependencia}}).then(function (galeria) {
-        resultado.push({
-            dependencia: dependencia[pos].dataValues,
-            url: galeria[0].dataValues.foto
-        });
-        pos = pos + 1;
-        getGaleriasPorNombreDeDependencia(resultado, dependencias, pos, callback);
-    }).catch(function (err) {
-        console.log("galerias " + err);
-        getGaleriasPorNombreDeDependencia(resultado, dependencias, pos, callback)
-    });
-} else {
-    callback(resultado);
-}
 }
 
 
