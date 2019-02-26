@@ -40,13 +40,10 @@
                 <img class="preload-3" src="img/core-img/preload-3.png" alt="">
             </div>
         </div>
-        <script src=""></script>
+        
         <script>
 var t = jQuery.noConflict();
-
-
-t().ready(function () {
-    
+t().ready(function () {  
 
     // validate signup form on keyup and submit
     t("#dependencia").validate({
@@ -71,21 +68,17 @@ t().ready(function () {
         messages: {
             nombred: {
                 required: "Ingrese el nombre por favor"
-
             },
             descripcion: {
                 required: "Escribe una descripcion"
-
             },
-            categoria: {required: "Selecciona la categoria"},
-
+            categoria: {required: "Selecciona la categoria"
+            },
             telefono: {
                 required: "Ingresa un telefono"
             },
-
             horario: {
                 required: "Escribe el horario de atencion"
-
             }
         }
     });
@@ -93,32 +86,17 @@ t().ready(function () {
 });
 
         </script>
-
-
-
-
         <!-- ***** Header Area Start ***** -->
         <header class="header_area" id="header" style="background: #040505">
             <div class="container h-100">
                 <div class="row h-100">
                     <div class="col-12 h-100">
-                        <nav class="h-100 navbar navbar-expand-lg align-items-center">
-                            <input class="form-control col-lg-4" type="text" value="" placeholder="¿Qué estás buscando?">
-                            <div class="partials_search_suggestions_view" data-view="partials/search/suggestions"
-                                 data-subid="">
-                                <div class="caviar-search-btn">
-                                    <a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#caviarNav" aria-controls="caviarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                        <nav class="h-100 navbar navbar-expand-lg align-items-center"> 
+                            <a class="navbar-brand" href="">GeoLoja</a>
                             <div class="collapse navbar-collapse" id="caviarNav">
-                                <ul class="navbar-nav ml-auto" id="caviarMenu">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
-                                    </li>
+                                <ul class="navbar-nav ml-auto" id="caviarMenu">                                    
                                     <li class="nav-item dropdown">
                                         <a class="nav-link " href="/ver/categoria">Categorias</a>
-
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/ver/dependencia">Dependencias</a>
@@ -127,10 +105,11 @@ t().ready(function () {
                                         <a class="nav-link" href="/ver/galeria">Galeria</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="/reportes">Reportes</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" href="/cerrar_sesion">Cerrar sesion</a>
                                     </li>
-
-
                                 </ul>
                                 <!-- Search Btn -->
 
@@ -141,9 +120,6 @@ t().ready(function () {
             </div>
         </header>
         <!-- ***** Header Area End ***** -->
-
-
-
                    
         <!-- ****** Reservation Area End ****** -->
         <section class="caviar-testimonials-area" id="testimonial">
@@ -193,23 +169,14 @@ t().ready(function () {
                             <div class="col-12 col-lg-12">
                                 <input type="text" class="form-control" placeholder="Latitud" name="latitud" id="txt_lat" readonly>
                             </div>
-                            <div id="map" style="width: 500px; height: 400px;">
-                                
-                            </div>
-                            
-                           
-                            <div class="col-12 "><br>
+                            <div id="map" style="width: 500px; height: 400px;">                                
+                            </div>                             <div class="col-12 "><br>
                                 <button type="submit" class="btn caviar-btn"><span></span>Agregar dependencia</button>
-                            </div>
-                            
-
+                            </div>    
                         </div>
                     </form>
                 </div>
             </div>
-
-            
-             
         </section>
         <!-- ****** Reservation Area End ****** -->
         
@@ -261,12 +228,8 @@ t().ready(function () {
                                 });
 
                             </script>
-
-
-
                             </tr>                    
                             {{/each }}
-
                             </tbody>
                         </table>
                     </div>
@@ -284,7 +247,7 @@ t().ready(function () {
                 <div class="row">
                     <div class="col-12">
                         <div class="footer-text">
-                            <a href="#" class="navbar-brand">caviar</a>
+                            <a href="#" class="navbar-brand">Geolocalizacion Loja</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with  by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -295,7 +258,6 @@ t().ready(function () {
         </footer>
         <!-- ****** Footer Area End ****** -->
 
-
         <script src="../../js/bootstrap/popper.min.js"></script>
         <!-- Bootstrap-4 js -->
         <script src="../../js/bootstrap/bootstrap.min.js"></script>
@@ -304,4 +266,4 @@ t().ready(function () {
         <!-- Active JS -->
         <script src="../../js/active.js"></script>
     </body>
-
+</html>

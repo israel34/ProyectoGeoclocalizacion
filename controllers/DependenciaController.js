@@ -84,10 +84,11 @@ class DependenciaController {
             res.status(500).json(err);
         });
     }
-    buscarCategoria(req, res) {
-        var nombre = req.params.nombre;
+   /* buscarCategoria(req, res) {
+        var nombre = req.params.id;
         Categoria.findAll({where: {nombre:  nombre }}).then(function (categorias) {
             if (categorias) {
+                console.log('volvi');
                 console.log(categorias.length);
                 buscarDependencias([], categorias, 0, function (dependencias) {
                     console.log(dependencias);
@@ -98,9 +99,31 @@ class DependenciaController {
             console.log(err);
             res.status(500).json(err);
         });
-
-    }
+    }*/
 }
+/*
+function   buscarDependencias(dependencias, categorias, pos, callback) {
+    console.log('hola mundo valio la pena');
+    if (pos < categorias.length) {
+        var id_categoria = categorias[pos].dataValues.id;
+        console.log(id_categoria);
+        Dependencia.findAll({where: {id_categoria: id_categoria}}).then(function (aux) {
+            getGalerias([], aux, 0, function (galerias) {
+                dependencias.push({
+                    dependencias: aux,
+                    galerias: galerias
+                });
+                pos = pos + 1;
+                buscarDependencias(dependencias, categorias, pos, callback);
+            });
+        }).catch(function (err) {
+            pos = pos + 1;
+            buscarDependencias(dependencias, categorias, pos, callback);
+        });
+    } else {
+        callback(dependencias);
+    }
+}*/
 
 function getGalerias(galerias, dependencias, pos, callback) {
     if (pos < dependencias.length) {
@@ -124,10 +147,6 @@ function getGalerias(galerias, dependencias, pos, callback) {
         callback(galerias);
     }
 }
-
-
-
-
 
 module.exports = DependenciaController;
 

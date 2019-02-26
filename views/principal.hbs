@@ -11,15 +11,16 @@
         <!-- Title -->
         <title>{{title}}</title>
 
+
         <!-- Favicon -->
         <link rel="icon" href="img/core-img/favicon.ico">
 
         <!-- Core Stylesheet -->
         <link href="style.css" rel="stylesheet">
-        
         <!-- Responsive CSS -->
         <link href="css/responsive/responsive.css" rel="stylesheet">
-      
+        <!-- Cards Stylesheet -->
+        <link href="styleCard.css" rel="stylesheet">
         <!-- Script Ajax -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
@@ -45,7 +46,8 @@
         <!-- Fin Preloader -->
 
         <!-- Buscar Dependencias Script -->
-                <script>
+
+        <script>
 $(document).ready(function () {
     $("#buscarDependencia").keyup(function () {
         var busqueda = $("#buscarDependencia").val();
@@ -91,6 +93,7 @@ function buscarDependencia(busqueda) {
                 html += '<h6>' + data[i].dependencia.nombre + '</h6>';
                 html += '<small style="width: 187px; height: 80px;float:left; overflow: hidden;">' + data[i].dependencia.descripcion + '</small>';
                 html += '<a href="#!" class="btn btn-primary btn_ruta" name="'+data[i].dependencia.latitud+'/'+data[i].dependencia.longitud+'">Ver ruta</a>';
+                html += '<a href="/principal_usuario?id='+data[i].dependencia.id+'" style="margin-left: 10px;" class="btn btn-primary btn_info">Info</a>';
                 html += '</div>';
                 html += ' </div>';
                 if (data[i].dependencia.latitud !== null && data[i].dependencia.longitud !== null) {
@@ -99,14 +102,18 @@ function buscarDependencia(busqueda) {
             }
             $("div#lugarBuscado").empty();
             $("div#lugarBuscado").html(html);
+            //puntos.push({"lng": "-79.1996443", "lat": "-4.0310106999999995"});
+            //puntos.push({"lng": "-79.20112487937621", "lat": "-4.030261539038454"});
             pintar(puntos);
         }, error: function (jqXHR, textStatus, errorThrown) {
         }
     });
 }
-        </script>        
-        <!-- Buscar Dependencias Script Fin -->
-       
+        </script>
+
+        <!-- Fin Buscar Dependencias Script -->
+
+
         <!-- ***** Header Area Start ***** -->
         <header class="header_area" id="header">
             <div class="container h-100">
@@ -129,17 +136,22 @@ function buscarDependencia(busqueda) {
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             {{#each this.categoria as |item|}}
-                                            <a class="dropdown-item" href="{{ item.id }}">{{item.nombre}}</a>                                     
+                                            <a class="dropdown-item" href="">{{item.nombre}}</a>                                     
                                             {{/each}}
                                         </div>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/iniciar_sesion">Ingresar</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/registrar">Registrate</a>
-                                    </li>
-
+                                    {{#if this.statusLogin}}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/cerrar_sesion">Cerrar sesion</a>
+                                        </li>
+                                    {{else}}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/iniciar_sesion">Ingresar</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/registrar">Registrate</a>
+                                        </li>
+                                    {{/if}}
                                 </ul>
                                 <!-- Search Btn -->
 
@@ -167,9 +179,8 @@ function buscarDependencia(busqueda) {
                         <div class="row h-100 align-items-center">
                             <div class="col-11 col-md-6 col-lg-4">
                                 <div class="hero-content">
-                                    <h2>Lorem Ipsum</h2>
-                                    <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                                    <a href="#" class="btn caviar-btn"><span></span> Reservation</a>
+                                     <h2>GeoLoja</h2>
+                                    <p>Es un sistema que permite a los usuarios la búsqueda, localización y contacto de toda microempresa, macroempresa y lugar turístico de la ciudad de Loja.</p>                                
                                 </div>
                             </div>
                         </div>
@@ -183,9 +194,8 @@ function buscarDependencia(busqueda) {
                         <div class="row h-100 align-items-center">
                             <div class="col-11 col-md-6 col-lg-4">
                                 <div class="hero-content">
-                                    <h2>Lorem Ipsum</h2>
-                                    <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                                    <a href="#" class="btn caviar-btn"><span></span> Reservation</a>
+                                    <h2>GeoLoja</h2>
+                                    <p>Es un sistema que permite a los usuarios la búsqueda, localización y contacto de toda microempresa, macroempresa y lugar turístico de la ciudad de Loja.</p>                                
                                 </div>
                             </div>
                         </div>
@@ -203,10 +213,7 @@ function buscarDependencia(busqueda) {
                 <div class=" reservation-form">
                     <div class="container" >
                         <div id="lugarBuscado" >
-                            <br>
-                            <br>
-                            <br>
-                            <img src="img/pusheen.gif" alt="" style="margin-top:50%;width:100%;" >
+                            <img src="img/pusheen.gif" alt="" style="margin-top:50%;width:100%;x" >
                         </div>
                     </div>
                 </div>

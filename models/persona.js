@@ -17,7 +17,8 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.STRING(15)
         },
         external_id: {
-            type: Sequelize.UUID
+            type: Sequelize.UUID,
+            defaultValue: Sequelize.UUIDV4
         },
         estado: {
             type: Sequelize.BOOLEAN,

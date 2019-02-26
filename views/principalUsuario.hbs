@@ -8,12 +8,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <!-- mapa  AIzaSyCN4pKzD21uzA00fgxJhSW69koN9Jx7Qcs -->
-        
+
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN4pKzD21uzA00fgxJhSW69koN9Jx7Qcs&callback=initMap" type="text/javascript"></script>
         <script src="/js/geolocalizacion.js"></script>    
-        
-        
-        
+
+
+
         <!-- galeria -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -25,7 +25,7 @@
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
         <link rel="stylesheet" type="text/css" href="css/component.css" />
         <script src="js/modernizr.min.js"></script>
- 
+
         <!-- Title -->
         <title>{{title}}</title>
 
@@ -37,6 +37,39 @@
 
         <!-- Responsive CSS -->
         <link href="css/responsive/responsive.css" rel="stylesheet">
+        <style type="text/css">
+            .form {
+                width: 250px;
+                margin: 0 auto;
+                height: 50px;
+            }
+
+            .p {
+                text-align: center;
+            }
+
+            .label {
+                font-size: 40px;
+                color: grey;
+            }
+
+            input[type="radio"] {
+                display: none;
+            }
+            .clasificacion {
+                direction: rtl;
+                unicode-bidi: bidi-override;
+            }
+
+            label:hover,
+            label:hover ~ label {
+                color: orange;
+            }
+
+            input[type="radio"]:checked ~ label {
+                color: orange;
+            }
+        </style>
 
     </head>
 
@@ -51,9 +84,6 @@
             </div>
         </div>
         <!-- Fin Preloader -->
-        
-        
-        
 
         <!-- ***** Header Area Start ***** -->
         <header class="header_area" id="header">
@@ -61,35 +91,25 @@
                 <div class="row h-100">
                     <div class="col-12 h-100">
                         <nav class="h-100 navbar navbar-expand-lg align-items-center">
-                            <input class="form-control col-lg-4" type="text" value="" placeholder="¿Qué estás buscando?">
-                            <div class="partials_search_suggestions_view" data-view="partials/search/suggestions"
-                                 data-subid="">
-                                <div class="caviar-search-btn">
-                                    <a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
+                            <a class="navbar-brand" href="">GeoLoja</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#caviarNav" aria-controls="caviarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
                             <div class="collapse navbar-collapse" id="caviarNav">
                                 <ul class="navbar-nav ml-auto" id="caviarMenu">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
-                                    </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="index.ht ml">Home</a>
-                                            <a class="dropdown-item" href="menu.html">Menu</a>
-                                            <a class="dropdown-item" href="regular-page.html">Regular Page</a>
-                                            <a class="dropdown-item" href="contact.html">Contact</a>
-                                        </div>
+                                        <a class="nav-link " href="/">Home</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/iniciar_sesion">Ingresar</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/registrar">Registrate</a>
-                                    </li>
-
+                                    {{#if this.login}}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/cerrar_sesion">Cerrar sesion</a>
+                                        </li>                             
+                                    {{else}}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/iniciar_sesion">Ingresar</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/registrar">Registrate</a>
+                                        </li>
+                                    {{/if}}
                                 </ul>
                                 <!-- Search Btn -->
 
@@ -100,166 +120,128 @@
             </div>
         </header>
         <!-- ***** Header Area End ***** -->
-        
-        <!-- ***** Contacto dependencia comienzo ***** -->
-        <div class="breadcumb-area bg-img bg-overlay" style="height:100vh !important; background-image: url(img/bg-img/about-1.jpg)" >
-            <!-- Welcome Social Info -->
-            <div class="welcome-social-info">
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <div class="col-12">
-                        <div class="breadcumb-content" >
-                            <!-- {{#each this.Dependencia as |itenes a|}}
-                            <h2>{{ itenes.nombre }}</h2>
-                            <p>{{ itenes.descripcion }}</p>
-                            {{/each }}-->
-                            <a href="#contact" class="btn caviar-btn"><span></span> Informacion </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ***** Contacto dependencia Fin***** -->
 
         <!-- ***** Informacion Dependencia ***** -->
-        <div class="caviar-contact-area d-md-flex align-items-center" id="contact" style="height:100vh !important;">
-            <div class="contact-form-area d-flex justify-content-end">
-                <div class="contact-form">
-                    
-                    <form action="#">
-                        
-                        <div class="row">
-                         <!--    <h2>Contact</h2>
-                            <p><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:+1234567890">{{ itenes.telefono }}</a> </p>horarioAtencion
-                            <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{ itenes.direccion }}</p>
-                            <p><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:someone@yoursite.com">{{ itenes.horarioAtencion }}</a></p> -->
-                            
-                        <div class="col-12">
-                            <a class="btn caviar-btn" href="#galeria"><span ></span>Ver mas</a>
-                        </div>
-                </div>
-                </form>
+        <div class="caviar-contact-area d-md-flex align-items-center" id="contact" style="height:100vh !important;background:url(img/fondo_usuario.jpg);">
+            {{#each this.dependencia as |dependencia|}}
+            <div style="background: #fff;width: 50%;margin-left: 25%;border-radius: 5px;padding: 2.5vw;">
+                <h4 style="text-align:center;">{{dependencia.nombre}}</h4>
+                <p style="margin: 5px 0px 5px 0px;text-align: justify;"><strong>Descripción: </strong>{{dependencia.descripcion}}</p>
+                <p style="margin: 5px 0px 5px 0px;text-align: justify;"><strong>Teléfono: </strong>{{dependencia.telefono}}</p>
+                <p style="margin: 5px 0px 5px 0px;text-align: justify;"><strong>Horario de Atención: </strong>{{dependencia.horarioAtencion}}</p>
             </div>
+            {{/each}}
         </div>
-
-        <div class="caviar-map-area wow fadeInRightBig" id="mapa" style="height:100vh !important;"></div>
-        
-        
-        
-        
     </div>
     <!-- ***** Fin Informacion Dependencia***** -->
 
     <!-- ***** Galeria Dependencia Comienzo***** -->
     <div class="contenedor cnt-5 red" id="galeria">
-    <section id="photostack-1" class="photostack photostack-start" style="height:100vh !important;">
-        <div>
-            <figure>
-                <a class="photostack-img" href="#!"><img src="img/1.jpg" alt="img01"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Serenity Beach</h2>
-                </figcaption>
-            </figure>
-            <figure>
-                <a class="photostack-img" href="#!"><img src="img/2.jpg" alt="img02"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Happy Days</h2>
-                </figcaption>
-            </figure>
-            <figure>
-                <a class="photostack-img" href="#!"><img src="img/3.jpg" alt="img03"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Beautywood</h2>
-                </figcaption>
-            </figure>
-            <figure>
-                <a class="photostack-img" href="#!"><img src="img/4.jpg" alt="img04"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Heaven of time</h2>
-                </figcaption>
-            </figure>
-            <figure>
-                <a class="photostack-img" href="#!"><img src="img/5.jpg" alt="img05"/></a>
-                <figcaption>
-                    <h2 class="photostack-title" >Speed Racer</h2>
-                </figcaption>
-            </figure>
-            <figure>
-                <a class="photostack-img" href="#!"><img src="img/6.jpg" alt="img06"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Forever this</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img" ><img src="img/7.jpg" alt="img07"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Lovely Green</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img"><img src="img/8.jpg" alt="img08"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Wonderful</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img"><img src="img/9.jpg" alt="img09"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Love Addict</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img"><img src="img/10.jpg" alt="img10"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Friendship</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img"><img src="img/11.jpg" alt="img11"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">White Nights</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img"><img src="img/12.jpg" alt="img12"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Serendipity</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img"><img src="img/13.jpg" alt="img13"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Pure Soul</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img"><img src="img/14.jpg" alt="img14"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Winds of Peace</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img"><img src="img/15.jpg" alt="img15"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Shades of blue</h2>
-                </figcaption>
-            </figure>
-            <figure data-dummy="">
-                <a href="#" class="photostack-img"><img src="img/16.jpg" alt="img16"/></a>
-                <figcaption>
-                    <h2 class="photostack-title">Lightness</h2>
-                </figcaption>
-            </figure>
-        </div>
-    </section>
+        <section id="photostack-1" class="photostack photostack-start" style="height:100vh !important;">
+            <div>
+                {{#each this.galeria as |foto|}}
+                <figure>
+                    <a class="photostack-img" href="#!"><img src="{{ foto.foto }}" alt="img01" style="width:100%;height:100%;"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Fotografía</h2>
+                    </figcaption>
+                </figure>
+                {{/each}}
+                <figure>
+                    <a class="photostack-img" href="#!"><img src="img/2.jpg" alt="img02"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Happy Days</h2>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <a class="photostack-img" href="#!"><img src="img/3.jpg" alt="img03"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Beautywood</h2>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <a class="photostack-img" href="#!"><img src="img/4.jpg" alt="img04"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Heaven of time</h2>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <a class="photostack-img" href="#!"><img src="img/5.jpg" alt="img05"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title" >Speed Racer</h2>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <a class="photostack-img" href="#!"><img src="img/6.jpg" alt="img06"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Forever this</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img" ><img src="img/7.jpg" alt="img07"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Lovely Green</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img"><img src="img/8.jpg" alt="img08"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Wonderful</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img"><img src="img/9.jpg" alt="img09"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Love Addict</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img"><img src="img/10.jpg" alt="img10"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Friendship</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img"><img src="img/11.jpg" alt="img11"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">White Nights</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img"><img src="img/12.jpg" alt="img12"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Serendipity</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img"><img src="img/13.jpg" alt="img13"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Pure Soul</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img"><img src="img/14.jpg" alt="img14"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Winds of Peace</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img"><img src="img/15.jpg" alt="img15"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Shades of blue</h2>
+                    </figcaption>
+                </figure>
+                <figure data-dummy="">
+                    <a href="#" class="photostack-img"><img src="img/16.jpg" alt="img16"/></a>
+                    <figcaption>
+                        <h2 class="photostack-title">Lightness</h2>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
     </div>
 
     <!-- ***** Galeria Dependencia Fin***** -->
-
 
     <!-- ****** Comentarios Slider Comienzo ****** -->
     <section class="caviar-testimonials-area" id="testimonial">
@@ -268,44 +250,56 @@
                 <div class="col-12">
                     <div class="testimonials-content">
                         <div class="section-heading text-center">
-                            <h2>Testimonials</h2>
+                            <h2>Comentarios</h2>
                         </div>
                         <div class="caviar-testimonials-slides owl-carousel">
                             <!-- Single Testimonial Area -->
-                            <div class="single-testimonial">
-                                <div class="testimonial-thumb-name d-flex align-items-center">
-                                    <img src="img/testimonial-img/3.jpg" alt="">
-                                    <div class="tes-name">
-                                        <h5>Robert Jonson</h5>
-                                        <p>lorem ipsum</p>
-                                    </div>
-                                </div>
-                                <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod.</p>
-                            </div>
-                            <!-- Single Testimonial Area -->
-                            <div class="single-testimonial">
-                                <div class="testimonial-thumb-name d-flex align-items-center">
-                                    <img src="img/testimonial-img/2.jpg" alt="">
-                                    <div class="tes-name">
-                                        <h5>Clara Hudson</h5>
-                                        <p>lorem ipsum</p>
-                                    </div>
-                                </div>
-                                <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod.</p>
-                            </div>
-                            <!-- Single Testimonial Area -->
+                            {{#each this.puntuaciones as |punto|}}
                             <div class="single-testimonial">
                                 <div class="testimonial-thumb-name d-flex align-items-center">
                                     <img src="img/testimonial-img/1.jpg" alt="">
                                     <div class="tes-name">
-                                        <h5>Jane Black</h5>
-                                        <p>lorem ipsum</p>
+                                        <h5>{{punto.persona.nombre}}</h5>
                                     </div>
                                 </div>
-                                <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod.</p>
+                                <p>{{punto.punto.comentario}}</p>
                             </div>
+                            {{/each}}
                         </div>
                     </div>
+                    {{#if this.login}}
+                        <form action="/guardar/comentario" method="post" class="form-control">
+                            <div class="container">
+                                {{#each this.dependencia as |dependencia|}}
+                                <input type="hidden" name="id_dependencia" value="{{dependencia.id}}">
+                                {{/each}}
+                                <div>
+                                    <textarea class="form-control" id="comment" name="comentario" placeholder="Comentario"></textarea>
+                                </div>
+                                <div >
+                                    <p class="clasificacion p">
+                                        <input  id="radio1" type="radio" name="estrellas" value="5">
+                                        <label  class="label" for="radio1">★</label>
+                                        <input id="radio2" type="radio" name="estrellas" value="4">
+                                        <label class="label" for="radio2">★</label>
+                                        <input id="radio3" type="radio" name="estrellas" value="3">
+                                        <label class="label" for="radio3">★</label>
+                                        <input id="radio4" type="radio" name="estrellas" value="2">
+                                        <label class="label" for="radio4">★</label>
+                                        <input id="radio5" type="radio" name="estrellas" value="1">
+                                        <label class="label" for="radio5">★</label>
+                                    </p>
+                                </div>  
+                                <div>
+                                    <button class="btn btn-link"  >Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                    {{else}}
+                        <div style="text-align:center;padding:3vw 0px 0px 0px;color: #000;">
+                            <a href="/iniciar_sesion">Si deseas comentar, por favor inicia sesión</a>
+                        </div>    
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -318,7 +312,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="footer-text">
-                        <a href="#" class="navbar-brand">caviar</a>
+                        <a href="#" class="navbar-brand">Geolocalizacion Loja</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with  by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -331,21 +325,20 @@
     <script src="js/classie.js"></script>
     <script src="js/photostack.js"></script>
     <script>
-                            // [].slice.call( document.querySelectorAll( '.photostack' ) ).forEach( function( el ) { new Photostack( el ); } );
-
-                            new Photostack(document.getElementById('photostack-1'), {
-                                callback: function (item) {
-                                    //console.log(item)
-                                }
-                            });
+// [].slice.call( document.querySelectorAll( '.photostack' ) ).forEach( function( el ) { new Photostack( el ); } );
+new Photostack(document.getElementById('photostack-1'), {
+    callback: function (item) {
+        //console.log(item)
+    }
+});
     </script>
 
     <!-- Jquery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <script>
-        $(document).ready(function(){
-            initMap();
-        });
+$(document).ready(function () {
+    initMap();
+});
     </script>
     <!-- Popper js -->
     <script src="js/bootstrap/popper.min.js"></script>
@@ -356,4 +349,3 @@
     <!-- Active JS -->
     <script src="js/active.js"></script>
 </body>
-

@@ -2,9 +2,6 @@
 var models = require('../models/ind');
 var Categoria = models.categoria;
 const uuidv4 = require('uuid/v4');
-var Dependencia = models.dependencia;
-
-
 class CategoriaController {
     guardar(req, res) {
         //console.log('external............................' + req.body.external);
@@ -18,8 +15,7 @@ class CategoriaController {
                 res.redirect('/ver/categoria');
                 req.flash('info', 'Se ha creado correctamente');
                 //res.redirect('/administracion');
-            }
-            
+            }            
         });
         }
         else{
@@ -28,28 +24,27 @@ class CategoriaController {
         }, {where: {external_id: req.body.external}}).then(function (updatedcategoria, created) {
             res.redirect('/ver/categoria');
             if(updatedcategoria) {
-                req.flash('info', 'Se ha creado correctamente', false);
-                
+                req.flash('info', 'Se ha creado correctamente', false);                
                 console.log('Se modifico categoria............');
             }
         });
-        }
-    
-        
+        } 
     }
     categoriaPrincipal(req, res){
-          Categoria.findAll({}).then(function (listaC) {
-            //console.log('katy.................................' );
-            res.render('principal',
-                    {
-                         title: 'Geolocolizacion Loja',
-                        categoria: listaC                     
-                   });
-        });
+        Categoria.findAll({}).then(function (listaC) {
+            require('./datos/insert_rol');
 
+            var logeado = false;
+            if(req.isAuthenticated()){
+                logeado = true;
+            }
+            res.render('principal', { title: 'Geolocolizacion Loja', categoria: listaC, statusLogin: logeado});
+        });
     }
     ListaCategoria(req, res){
-          Categoria.findAll({}).then(function (listaC) {
+        console.log(req.user);
+        if(req.user.rol==='administrador'){
+            Categoria.findAll({}).then(function (listaC) {
             //console.log('katy.................................' );
             res.render('categoria',
                     {
@@ -57,9 +52,10 @@ class CategoriaController {
                         categoria: listaC                     
                    });
         });
-
-    }
-   
+        }else if(req.user.rol==='usuario'){
+            res.redirect('/');
+        }
+    }  
     
 }
 module.exports = CategoriaController;
