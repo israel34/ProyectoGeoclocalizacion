@@ -84,9 +84,10 @@ class DependenciaController {
             res.status(500).json(err);
         });
     }
-   /* buscarCategoria(req, res) {
+    buscarCategoria(req, res) {
         var nombre = req.params.id;
-        Categoria.findAll({where: {nombre:  nombre }}).then(function (categorias) {
+        console.log('para ver id.................' + nombre);
+        Categoria.findAll({where: {id:  nombre }}).then(function (categorias) {
             if (categorias) {
                 console.log('volvi');
                 console.log(categorias.length);
@@ -99,9 +100,9 @@ class DependenciaController {
             console.log(err);
             res.status(500).json(err);
         });
-    }*/
+    }
 }
-/*
+
 function   buscarDependencias(dependencias, categorias, pos, callback) {
     console.log('hola mundo valio la pena');
     if (pos < categorias.length) {
@@ -123,7 +124,7 @@ function   buscarDependencias(dependencias, categorias, pos, callback) {
     } else {
         callback(dependencias);
     }
-}*/
+}
 
 function getGalerias(galerias, dependencias, pos, callback) {
     if (pos < dependencias.length) {
@@ -147,6 +148,10 @@ function getGalerias(galerias, dependencias, pos, callback) {
         callback(galerias);
     }
 }
+
+
+
+
 
 module.exports = DependenciaController;
 

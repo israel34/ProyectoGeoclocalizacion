@@ -5,7 +5,7 @@
         <meta charset="UTF-8"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <!-- The above 4 meta tags must come first in the head; any other head content must come after these tags -->
 
         <!-- Title -->
         <title>{{title}}</title>
@@ -24,9 +24,9 @@
 
 
         <script src="../../jquery_validation.js"></script>
-         <!-- mapa -->        
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN4pKzD21uzA00fgxJhSW69koN9Jx7Qcs&callback=initMap"></script>
-            <script src="/js/geolocalizacion.js"></script>
+        <!-- mapa -->        
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN4pKzD21uzA00fgxJhSW69koN9Jx7Qcs&callback=initMap"></script>
+        <script src="/js/geolocalizacion.js"></script>
 
     </head>
 
@@ -40,10 +40,10 @@
                 <img class="preload-3" src="img/core-img/preload-3.png" alt="">
             </div>
         </div>
-        
+
         <script>
 var t = jQuery.noConflict();
-t().ready(function () {  
+t().ready(function () {
 
     // validate signup form on keyup and submit
     t("#dependencia").validate({
@@ -86,7 +86,7 @@ t().ready(function () {
 });
 
         </script>
-        <!-- ***** Header Area Start ***** -->
+        <!-- ** Header Area Start ** -->
         <header class="header_area" id="header" style="background: #040505">
             <div class="container h-100">
                 <div class="row h-100">
@@ -111,17 +111,15 @@ t().ready(function () {
                                         <a class="nav-link" href="/cerrar_sesion">Cerrar sesion</a>
                                     </li>
                                 </ul>
-                                <!-- Search Btn -->
-
                             </div>
                         </nav>
                     </div>
                 </div>
             </div>
         </header>
-        <!-- ***** Header Area End ***** -->
-                   
-        <!-- ****** Reservation Area End ****** -->
+        <!-- ** Header Area End ** -->
+
+        <!-- ** Reservation Area End ** -->
         <section class="caviar-testimonials-area" id="testimonial">
             <div class="container">
                 <div class="row">
@@ -129,8 +127,8 @@ t().ready(function () {
                 </div>
             </div>
         </section>
-        <!-- ****** dependencias ****** -->
-        <section class="caviar-reservation-area d-md-flex">
+        <!-- ** dependencias ** -->
+        <section class="caviar-reservation-area d-md-flex" style="padding-top: 10vw;">
             <div class="reservation-form-area d-flex justify-content-end">
                 <div class="reservation-form">
                     <div class="section-heading">
@@ -146,16 +144,12 @@ t().ready(function () {
                                     <option value="{{ item.id }}" > {{item.nombre}}</option>
                                     {{/each}}
                                 </select>
-
                             </div>
-
                             <div class="col-12 col-lg-12">
                                 <input id="nombred" type="text" class="form-control" placeholder="Nombre" name="nombreDependencia">
-
                             </div>
                             <div class="col-12 col-lg-12">
                                 <textarea  placeholder="Descripcion" class="form-control" name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
-
                             </div>
                             <div class="col-12 col-lg-12">
                                 <input type="text" class="form-control" placeholder="Telefono" name="telefono" id="telefono">
@@ -169,18 +163,23 @@ t().ready(function () {
                             <div class="col-12 col-lg-12">
                                 <input type="text" class="form-control" placeholder="Latitud" name="latitud" id="txt_lat" readonly>
                             </div>
-                            <div id="map" style="width: 500px; height: 400px;">                                
-                            </div>                             <div class="col-12 "><br>
+                            <div class="col-12 "><br>
                                 <button type="submit" class="btn caviar-btn"><span></span>Agregar dependencia</button>
                             </div>    
                         </div>
                     </form>
                 </div>
-            </div>
+                </div>
+                <div class="reservation-side-thumb">
+                    <div id="map" style="width: 700px; height: 700px;">
+
+                    </div>
+                </div>
+         
         </section>
-        <!-- ****** Reservation Area End ****** -->
-        
-        
+        <!-- ** Reservation Area End ** -->
+
+
         <section class="caviar-testimonials-area" id="testimonial">
             <div class="container">
                 <div class="row">
@@ -188,15 +187,15 @@ t().ready(function () {
                 </div>
             </div>
         </section>
-        
-        
+
+
         <section >
             <div class="container">
                 <div class="row">
-                    <div >
-                        <div class="section-heading">
-                            <h2>Lista de dependencias</h2>
-                        </div>
+                    <div class="section-heading">
+                        <h2>Lista de dependencias</h2>
+                    </div>
+                    <div style="height: 100vh;max-height: 100vh;overflow-y: scroll;">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -233,15 +232,15 @@ t().ready(function () {
                             </tbody>
                         </table>
                     </div>
-           
 
-                    
+
+
 
                 </div>
             </div>
         </section>
 
-        <!-- ****** Footer Area Start ****** -->
+        <!-- ** Footer Area Start ** -->
         <footer class="caviar-footer-area">
             <div class="container">
                 <div class="row">
@@ -256,7 +255,7 @@ t().ready(function () {
                 </div>
             </div>
         </footer>
-        <!-- ****** Footer Area End ****** -->
+        <!-- ** Footer Area End ** -->
 
         <script src="../../js/bootstrap/popper.min.js"></script>
         <!-- Bootstrap-4 js -->

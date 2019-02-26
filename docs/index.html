@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GeoLoja REST API Documentation</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="api-doc-generator.min.css">
+</head>
+<body>
+  <main>
+    <nav class="navigation">
+      <section class="container">
+        <div class="row">
+          <div class="column">
+            <div class="title">GeoLoja REST API Documentation</div>
+          </div>
+        </div>
+      </section>
+    </nav>
+
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="sections">
+            <ul>
+              <li>
+                <a href="#Cerrar Sesión">Cerrar Sesión</a>
+              </li>
+              <li>
+                <a href="#Galería">Galería</a>
+              </li>
+              <li>
+                <a href="#Guardar categoría">Guardar categoría</a>
+              </li>
+              <li>
+                <a href="#Guardar comentario">Guardar comentario</a>
+              </li>
+              <li>
+                <a href="#Guardar dependencia">Guardar dependencia</a>
+              </li>
+              <li>
+                <a href="#Guardar galería">Guardar galería</a>
+              </li>
+              <li>
+                <a href="#Guardar imagen">Guardar imagen</a>
+              </li>
+              <li>
+                <a href="#Home">Home</a>
+              </li>
+              <li>
+                <a href="#Inciar sesión">Inciar sesión</a>
+              </li>
+              <li>
+                <a href="#Iniciar sesión">Iniciar sesión</a>
+              </li>
+              <li>
+                <a href="#Lista de dependencias">Lista de dependencias</a>
+              </li>
+              <li>
+                <a href="#Listado de categorías (administrador) | Home (usuario)">Listado de categorías (administrador) | Home (usuario)</a>
+              </li>
+              <li>
+                <a href="#Principal usuario">Principal usuario</a>
+              </li>
+              <li>
+                <a href="#projects">projects</a>
+              </li>
+              <li>
+                <a href="#Registrarse">Registrarse</a>
+              </li>
+              <li>
+                <a href="#Reportes">Reportes</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Cerrar Sesión" class="section-toggle">Cerrar Sesión</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/cerrar_sesion</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Destruye los datos de la sesión activa y redirige a la página de Home</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Galería" class="section-toggle">Galería</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/ver/galeria</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Redirecciona al usuario a la vista donde se muestra la galería de imagenes de cada dependencia.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Guardar categoría" class="section-toggle">Guardar categoría</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint post">
+                <div class="address toggle-description">
+                  <span class="label">post</span><span class="url">/guardar/categoria</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Recibe la información de la nueva categoría a ser guardada en el sistema.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>nombre</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Guardar comentario" class="section-toggle">Guardar comentario</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/guardar/comentario</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Recibe la información del nuevo comentario de una dependencia a ser guardado en el sistema.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>comentario</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>ranKing</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Guardar dependencia" class="section-toggle">Guardar dependencia</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint post">
+                <div class="address toggle-description">
+                  <span class="label">post</span><span class="url">/guardar/dependencia</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Recibe la información de la nueva dependencia a ser guardada en el sistema.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>id_categoria</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>nombre</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>desccripcion</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>telefono</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>horarioAtencion</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>longitud</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>latitud</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Guardar galería" class="section-toggle">Guardar galería</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint post">
+                <div class="address toggle-description">
+                  <span class="label">post</span><span class="url">/guardar/galeria</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Recibe la información de la nueva galería de una dependencia a ser guardada en el sistema.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>id_dependencia</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Guardar imagen" class="section-toggle">Guardar imagen</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint post">
+                <div class="address toggle-description">
+                  <span class="label">post</span><span class="url">/guardar/imagen</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Recibe la información de la nueva imagen de la galería de una dependencia a ser guardada en el sistema.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>foto</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Home" class="section-toggle">Home</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Redirecciona al usuario a la vista principal del sistema</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Inciar sesión" class="section-toggle">Inciar sesión</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/iniciar_sesion</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Redirecciona al usuario a la pagina donde puede ingresar sus datos para inciar sesión en el sistema.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Iniciar sesión" class="section-toggle">Iniciar sesión</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/iniciar</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Recibe la información del usuario que quiere acceder al sistema, en caso de exito, el usuario es redireccionado a /ver/categoria.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>correo</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>clave</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Lista de dependencias" class="section-toggle">Lista de dependencias</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/ver/dependencia</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Redirecciona al usuario a la pantalla donde se muestra una lista completa de todoas las dependencias registradas en el sistema.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Listado de categorías (administrador) | Home (usuario)" class="section-toggle">Listado de categorías (administrador) | Home (usuario)</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/ver/categoria</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Valida que tipo de usuario se ha logeado en el sistema (administrador | usuario), y redirecciona a la pantalla princial del mismo.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Principal usuario" class="section-toggle">Principal usuario</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/principal_usuario</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Redirecciona al usuario a la vista donde se detalla la información de la dependencia.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>id</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="projects" class="section-toggle">projects</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/admin_buscar_dependencias/:nombre</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Devuleve una lista completa de todas las dependencias cuyo nombre coincida con el parametro de busqueda denominado 'nombre'.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>nombre</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/admin_buscar_categorias/:id</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Devuleve una lista completa de todas las dependencias cuya categoría coincida con el parametro de busqueda denominado 'id'.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>id</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/registrar</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Recibe la información del usuario que va a ser registrado en el sistema, en caso de completarse redirecciona al usuario a la pantalla para iniciar sesión.</p>
+
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>nombre</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>apellido</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>telefono</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>correo</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    <tr>
+                      <td>clave</td>
+                      <td>string</td>
+                      <td>true</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Registrarse" class="section-toggle">Registrarse</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/registrar</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Redirecciona al usuario a la vista donde puede ingresar sus datos para registrarse en el sistema.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="column">
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <a name="Reportes" class="section-toggle">Reportes</a>
+              </div>
+
+              <div class="actions">
+                <a class="section-toggle">Show/hide</a>
+                <a class="hide-description">List Operations</a>
+                <a class="show-description">Expand Operations</a>
+              </div>
+            </div>
+
+            <div class="endpoints">
+              <div class="endpoint get">
+                <div class="address toggle-description">
+                  <span class="label">get</span><span class="url">/reportes</span>
+                </div>
+
+                <div class="description hidden">
+                  <p>Redirecciona al usuario a la vista donde se puede observar el reporte del promedio de la puntuación de cada dependencia.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="text/javascript" src="api-doc-generator.min.js"></script>
+</body>
+</html>

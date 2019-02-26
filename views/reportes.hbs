@@ -89,9 +89,14 @@
         <section >
             <div class="container">
                 <div class="row">
-                    <div >
+                    <div style="width: 100%;">
                         <div class="section-heading">
                             <h2>Lista de dependencias</h2>
+                        </div>
+                        <div style="margin: 10px 0px 20px 0px;text-align: right;width: 100%;">
+                            {{#if this.statuspdf}}
+                                <a href="{{url_pdf}}" target="_blank" class="btn btn-primary">Descargar en PDF</a>
+                            {{/if}}
                         </div>
                         <table class="table">
                             <thead>
@@ -114,10 +119,6 @@
                             </tbody>
                         </table>
                     </div>
-           
-
-                    
-
                 </div>
             </div>
         </section>

@@ -962,7 +962,8 @@ li {
 /* Testimonials Area CSS */
 
 .caviar-testimonials-area {
-    padding-bottom: 200px;
+    padding-bottom: 0px;
+    padding-top: 10vw;
 }
 
 .single-testimonial {

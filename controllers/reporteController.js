@@ -14,7 +14,16 @@ class ReporteController {
                     var reporteData = getPromediosPuntuaciones(reporte, []);
                     console.log(reporteData);
                     //Crear PDF
-                    res.render('reportes', {title: 'Reportes', reporteData:reporteData});
+                    crearPDF(reporteData, function(status, data){
+                        console.log('PDF');
+                        console.log(data);
+                        var url_pdf = 'reporte.pdf';
+                        var statuspdf = false;
+                        if(status>=0){
+                            statuspdf = true;
+                        }
+                        res.render('reportes', {title: 'Reportes', reporteData:reporteData, statuspdf:statuspdf, url_pdf: url_pdf});
+                    });
                 });     
             }
         }).catch(function (err) {
@@ -60,8 +69,8 @@ function getPromediosPuntuaciones(reporte, reporteData){
     return reporteData;
 }
 
-function crearPDF(reportesData){
-    /*var html  = '<h5>Reporte de puntuaciones</h5>';
+function crearPDF(reporteData, callback){
+    var html  = '<h5>Reporte de puntuaciones</h5>';
         html += '<table>';
         html += '   <thead>';
         html += '       <tr>';
@@ -72,10 +81,26 @@ function crearPDF(reportesData){
         html += '       </tr>';
         html += '   </thead>';
         html += '   <tbody>';
-    reportesData.forEach((reporte, i)=>{
-        
+    reporteData.forEach((reporte, i)=>{
+        html += '       <tr>';
+        html += '           <td>'+i+'</td>';
+        html += '           <td>'+reporte.dependencia.id+'</td>';
+        html += '           <td>'+reporte.dependencia.nombre+'</td>';
+        html += '           <td>'+reporte.promedio+'</td>';
+        html += '       </tr>';
     });
-        html += '   </tbody>';*/
+        html += '   </tbody>';
+        html += '</table>';
+    var options = {
+        "format": 'A4'
+    };
+    pdf.create(html, options).toFile('./public/reporte.pdf', function(err, res) {
+        if (err){
+            callback(-1, err);
+        } else {
+            callback(0, res);
+        }
+    });
 }
 
 module.exports = ReporteController;
